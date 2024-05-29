@@ -1,0 +1,105 @@
+[gd_scene load_steps=9 format=3 uid="uid://ehbb360rhweg"]
+
+[ext_resource type="Script" path="res://Scripts/Global/RunTime.gd" id="1_1fk2i"]
+[ext_resource type="Script" path="res://Scripts/UI & Camera/Pause.gd" id="1_s14ts"]
+[ext_resource type="PackedScene" uid="uid://s6i8dtxlp5yq" path="res://UI/Pause/PauseMenu.tscn" id="2_1gk3g"]
+[ext_resource type="Texture2D" uid="uid://bxu1ji7kwgp6u" path="res://Sprites/Spritesheets/PTFtileset.png" id="3_3xevk"]
+[ext_resource type="PackedScene" uid="uid://tacb7ydmc5ot" path="res://Objects/Characters/Perry/Perry.tscn" id="4_u6mpc"]
+[ext_resource type="PackedScene" uid="uid://1bls1d50qhur" path="res://Objects/Obstacles/Invisible/RespawnFlag.tscn" id="5_0nrb4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rtvvs"]
+texture = ExtResource("3_3xevk")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:4/0 = 0
+0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:4/0/physics_layer_0/angular_velocity = 0.0
+0:5/0 = 0
+0:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:5/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_5pplt"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_rtvvs")
+
+[node name="Level3" type="Node2D"]
+script = ExtResource("1_1fk2i")
+
+[node name="Pause" type="Node2D" parent="."]
+process_mode = 3
+script = ExtResource("1_s14ts")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Pause"]
+
+[node name="PauseMenu" parent="Pause/CanvasLayer" instance=ExtResource("2_1gk3g")]
+visible = false
+offset_left = 260.0
+offset_top = 80.0
+offset_right = 380.0
+offset_bottom = 260.0
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_5pplt")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 0, 0, 131071, 0, 0, 196607, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 2, 196610, 0, 2, 196611, 0, 0, 196612, 0, 0)
+
+[node name="Node2D" type="Node2D" parent="TileMap"]
+
+[node name="Perry" parent="TileMap/Node2D" instance=ExtResource("4_u6mpc")]
+position = Vector2(30.3407, 9.92628)
+
+[node name="Camera2D" type="Camera2D" parent="TileMap/Node2D/Perry"]
+limit_left = 0
+limit_top = 0
+limit_right = 3450
+limit_bottom = 320
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_horizontal_offset = 0.1
+drag_vertical_offset = 0.1
+editor_draw_drag_margin = true
+
+[node name="RespawnFlag" parent="." instance=ExtResource("5_0nrb4")]
+position = Vector2(32, 0)

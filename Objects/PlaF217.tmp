@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://c41tmaftdi238"]
+
+[ext_resource type="Script" path="res://Objects/Player.gd" id="1_6a8ye"]
+[ext_resource type="Texture2D" uid="uid://b3svqke72mywl" path="res://Sprites/parrythefloor.png" id="2_vvcba"]
+[ext_resource type="PackedScene" uid="uid://dkcst3whrrhp2" path="res://Objects/Zwei.tscn" id="3_j672o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j3bwb"]
+size = Vector2(60, 129)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0x3j"]
+size = Vector2(60.5, 128.5)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_6a8ye")
+knockback_power = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(31.0303, 65)
+scale = Vector2(3.99596, 4.75432)
+texture = ExtResource("2_vvcba")
+region_enabled = true
+region_rect = Rect2(93.4847, 46.567, 15.9454, 27.7018)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(31, 65)
+shape = SubResource("RectangleShape2D_j3bwb")
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(31, 65)
+shape = SubResource("RectangleShape2D_o0x3j")
+debug_color = Color(1, 0.00784314, 0.0470588, 0.419608)
+
+[node name="Weapon" type="Node2D" parent="."]
+position = Vector2(20, 93)
+
+[node name="Zwei" parent="Weapon" instance=ExtResource("3_j672o")]
+z_index = -25
+position = Vector2(58, -17)
+
+[node name="ParryBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -20.0
+offset_top = 113.0
+offset_right = 119.0
+offset_bottom = 140.0
+rotation = -1.5708
+scale = Vector2(0.71, 0.71)
+max_value = 3.0
+allow_greater = true
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

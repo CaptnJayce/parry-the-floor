@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://c41tmaftdi238"]
+
+[ext_resource type="Script" path="res://Objects/Player.gd" id="1_6a8ye"]
+[ext_resource type="Texture2D" uid="uid://dul660ajgu1vv" path="res://icon.svg" id="1_dh823"]
+[ext_resource type="PackedScene" uid="uid://dkcst3whrrhp2" path="res://Objects/Zwei.tscn" id="3_j672o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j3bwb"]
+size = Vector2(60, 129)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0x3j"]
+size = Vector2(60.5, 128.5)
+
+[sub_resource type="Animation" id="Animation_80737"]
+resource_name = "attack_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -1.27409, -2.44346]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(20, 93), Vector2(30, 109.235), Vector2(40, 93)]
+}
+
+[sub_resource type="Animation" id="Animation_htxlq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 93)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_70wag"]
+_data = {
+"RESET": SubResource("Animation_htxlq"),
+"attack_down": SubResource("Animation_80737")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_6a8ye")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(31, 65)
+scale = Vector2(0.46875, 1)
+texture = ExtResource("1_dh823")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(31, 65)
+shape = SubResource("RectangleShape2D_j3bwb")
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(31, 65)
+shape = SubResource("RectangleShape2D_o0x3j")
+debug_color = Color(1, 0.00784314, 0.0470588, 0.419608)
+
+[node name="Weapon" type="Node2D" parent="."]
+position = Vector2(20, 93)
+
+[node name="Zwei" parent="Weapon" instance=ExtResource("3_j672o")]
+position = Vector2(-1.90735e-06, 0)
+rotation = -8.15941
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_70wag")
+}

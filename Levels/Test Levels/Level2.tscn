@@ -1,0 +1,120 @@
+[gd_scene load_steps=11 format=3 uid="uid://cx3vtjvtecas"]
+
+[ext_resource type="Script" path="res://Scripts/UI & Camera/Pause.gd" id="1_f2i8r"]
+[ext_resource type="Script" path="res://Scripts/Global/RunTime.gd" id="1_rj4jm"]
+[ext_resource type="PackedScene" uid="uid://s6i8dtxlp5yq" path="res://UI/Pause/PauseMenu.tscn" id="2_7puit"]
+[ext_resource type="PackedScene" uid="uid://i85o8gkx4fsw" path="res://Audio/MusicPlayer/OnetoFour.tscn" id="2_dagkl"]
+[ext_resource type="PackedScene" uid="uid://tacb7ydmc5ot" path="res://Objects/Characters/Perry/Perry.tscn" id="3_874bd"]
+[ext_resource type="Texture2D" uid="uid://bxu1ji7kwgp6u" path="res://Sprites/Spritesheets/PTFtileset.png" id="3_j430u"]
+[ext_resource type="PackedScene" uid="uid://1bls1d50qhur" path="res://Objects/Obstacles/Invisible/RespawnFlag.tscn" id="6_giae8"]
+[ext_resource type="PackedScene" uid="uid://db2hdtruot58o" path="res://Levels/Loaders/Next Level/next_level.tscn" id="7_iydiw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ej5l"]
+texture = ExtResource("3_j430u")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:4/0 = 0
+0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:4/0/physics_layer_0/angular_velocity = 0.0
+0:5/0 = 0
+0:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:5/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_dhcqg"]
+physics_layer_0/collision_layer = 1
+sources/2 = SubResource("TileSetAtlasSource_4ej5l")
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_rj4jm")
+
+[node name="Audio1" parent="." instance=ExtResource("2_dagkl")]
+
+[node name="Pause" type="Node2D" parent="."]
+process_mode = 3
+script = ExtResource("1_f2i8r")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Pause"]
+
+[node name="PauseMenu" parent="Pause/CanvasLayer" instance=ExtResource("2_7puit")]
+visible = false
+offset_left = 260.0
+offset_top = 80.0
+offset_right = 380.0
+offset_bottom = 260.0
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_dhcqg")
+format = 2
+layer_0/tile_data = PackedInt32Array(851968, 2, 0, 851969, 2, 2, 851970, 2, 2, 851971, 2, 0, 851972, 2, 0, 851973, 2, 0, 851974, 2, 0, 851975, 2, 0, 851976, 2, 0, 851977, 2, 0, 851978, 2, 0, 851979, 2, 0, 851980, 2, 0, 851981, 2, 0, 851982, 2, 0, 917518, 2, 0, 917517, 2, 0, 917516, 2, 0, 917515, 2, 0, 917514, 2, 0, 917513, 2, 0, 917512, 2, 0, 917511, 2, 0, 917510, 2, 0, 917509, 2, 0, 917508, 2, 0, 917507, 2, 0, 917504, 2, 0, 917505, 2, 0, 917506, 2, 0, 196607, 2, 0, 65535, 2, 0, 131071, 2, 0, 262143, 2, 0, 196608, 2, 0, 196609, 2, 2, 196610, 2, 2, 196611, 2, 0, 196612, 2, 0)
+
+[node name="Node2D" type="Node2D" parent="TileMap"]
+
+[node name="Perry" parent="TileMap/Node2D" instance=ExtResource("3_874bd")]
+position = Vector2(31.9325, 22.264)
+
+[node name="Camera2D" type="Camera2D" parent="TileMap/Node2D/Perry"]
+limit_left = 0
+limit_top = 0
+limit_right = 3450
+limit_bottom = 320
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_horizontal_offset = 0.1
+drag_vertical_offset = 0.1
+editor_draw_drag_margin = true
+
+[node name="RespawnFlag" parent="." instance=ExtResource("6_giae8")]
+position = Vector2(32, 0)
+
+[node name="next_level" parent="." instance=ExtResource("7_iydiw")]
+offset_left = 210.585
+offset_top = 176.945
+offset_right = 210.585
+offset_bottom = 176.945

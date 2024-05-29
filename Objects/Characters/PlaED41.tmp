@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://c41tmaftdi238"]
+
+[ext_resource type="Script" path="res://Objects/Characters/Player.gd" id="1_6a8ye"]
+[ext_resource type="Texture2D" uid="uid://bs2dulvt6yr1j" path="res://Sprites/parrythefloor.png" id="2_vvcba"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o0x3j"]
+size = Vector2(32, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j3bwb"]
+size = Vector2(32, 100)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_6a8ye")
+knockback_power = null
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-1, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Marker2D"]
+z_index = 1
+position = Vector2(-4.72472, -5.79999)
+scale = Vector2(4.483, 4.75432)
+texture = ExtResource("2_vvcba")
+region_enabled = true
+region_rect = Rect2(4.48558, 53.6755, 8.10783, 21.6209)
+
+[node name="HitBox" type="Area2D" parent="Marker2D"]
+position = Vector2(-35.755, -70.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/HitBox"]
+position = Vector2(30.755, 64.8)
+shape = SubResource("RectangleShape2D_o0x3j")
+debug_color = Color(1, 0.00784314, 0.0470588, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -6)
+shape = SubResource("RectangleShape2D_j3bwb")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+
+[node name="ParryBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -56.0
+offset_top = 44.0
+offset_right = 83.0
+offset_bottom = 71.0
+rotation = -1.5708
+scale = Vector2(0.71, 0.71)
+max_value = 1.8
+allow_greater = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+z_index = 4
+offset_left = -80.0
+offset_top = 44.0
+offset_right = 35.0
+offset_bottom = 71.0
+rotation = -1.5708
+scale = Vector2(0.85, 0.85)
+max_value = 5.0
+show_percentage = false
+
+[connection signal="area_entered" from="Marker2D/HitBox" to="." method="_on_hit_box_area_entered"]

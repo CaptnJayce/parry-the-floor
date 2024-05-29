@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://cyqdw1yi7p1eh"]
+
+[ext_resource type="PackedScene" uid="uid://bxi0txlasfn1y" path="res://UI/Pause/PauseController.tscn" id="1_geoi6"]
+[ext_resource type="PackedScene" uid="uid://b6vcxqw76qu3l" path="res://Objects/Terrain/Background.tscn" id="1_qk2er"]
+[ext_resource type="Script" path="res://Scripts/UI & Camera/Pause.gd" id="1_sooql"]
+[ext_resource type="Script" path="res://Scripts/Global/Save.gd" id="1_ts1pn"]
+[ext_resource type="PackedScene" uid="uid://c41tmaftdi238" path="res://Objects/Characters/Perry/Player.tscn" id="2_xxdbj"]
+[ext_resource type="PackedScene" uid="uid://cxwqxqptoetfj" path="res://Objects/Obstacles/Physical/Spikes.tscn" id="3_qlpuc"]
+[ext_resource type="PackedScene" uid="uid://bjbxfed2ln6pb" path="res://Objects/Terrain/BasicFloorDaLongWay.tscn" id="5_6s7es"]
+[ext_resource type="PackedScene" uid="uid://ccou1arlscb8i" path="res://Objects/Characters/Alan.tscn" id="5_gvphv"]
+[ext_resource type="PackedScene" uid="uid://6rack23dl4oo" path="res://Objects/Obstacles/Invisible/OutOfBounds.tscn" id="5_v7udn"]
+[ext_resource type="PackedScene" uid="uid://cq67f2wstk0yn" path="res://Objects/Pickups/MangoPickup.tscn" id="6_afv84"]
+[ext_resource type="PackedScene" uid="uid://1bls1d50qhur" path="res://Objects/Obstacles/Invisible/RespawnFlag.tscn" id="10_vbj3c"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ts1pn")
+
+[node name="Background" parent="." instance=ExtResource("1_qk2er")]
+
+[node name="Respawn" type="Node2D" parent="."]
+position = Vector2(-228, 324)
+
+[node name="RespawnFlag" parent="Respawn" instance=ExtResource("10_vbj3c")]
+
+[node name="RespawnFlag2" parent="Respawn" instance=ExtResource("10_vbj3c")]
+position = Vector2(356, 17)
+
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="Floor" parent="Terrain" instance=ExtResource("5_6s7es")]
+position = Vector2(-134, 436)
+
+[node name="Floor2" parent="Terrain" instance=ExtResource("5_6s7es")]
+position = Vector2(212, 437)
+
+[node name="OutOfBounds" parent="Terrain" instance=ExtResource("5_v7udn")]
+position = Vector2(198, 4521)
+
+[node name="Traps" type="Node2D" parent="."]
+
+[node name="SpikesGroup" type="Node2D" parent="Traps"]
+
+[node name="Spikes2" parent="Traps/SpikesGroup" instance=ExtResource("3_qlpuc")]
+position = Vector2(379, 370)
+rotation = -1.57335
+
+[node name="Spikes" parent="Traps/SpikesGroup" instance=ExtResource("3_qlpuc")]
+position = Vector2(514, 242)
+rotation = -1.5708
+
+[node name="Pickups" type="Node2D" parent="."]
+
+[node name="MangoPickup1" parent="Pickups" instance=ExtResource("6_afv84")]
+position = Vector2(220, 372)
+
+[node name="MangoPickup2" parent="Pickups" instance=ExtResource("6_afv84")]
+position = Vector2(185, 239)
+
+[node name="Alan" parent="." instance=ExtResource("5_gvphv")]
+position = Vector2(270, 319)
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = 1
+position = Vector2(22, -1)
+
+[node name="Player" parent="Node2D" instance=ExtResource("2_xxdbj")]
+position = Vector2(-246, 362)
+rotation = 0.00146535
+
+[node name="Pause" type="Node2D" parent="."]
+process_mode = 3
+position = Vector2(-1.52588e-05, 0)
+script = ExtResource("1_sooql")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Pause"]
+
+[node name="PauseController" parent="Pause/CanvasLayer" instance=ExtResource("1_geoi6")]
+visible = false
+offset_left = 324.0
+offset_top = 110.0
+offset_right = 364.0
+offset_bottom = 150.0

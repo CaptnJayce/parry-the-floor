@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="SaveData" load_steps=2 format=3 uid="uid://lv7gp6rxb75g"]
+
+[ext_resource type="Script" path="res://Scripts/Global/SaveData.gd" id="1_hnixp"]
+
+[resource]
+script = ExtResource("1_hnixp")
+level_dic = {
+"Level1": {
+"beaten": true,
+"damage_taken": 0,
+"max_petals": 3,
+"petals": 3,
+"unlocked": true,
+"unlocks": "Level2"
+},
+"Level2": {
+"beaten": false,
+"damage_taken": 0,
+"max_petals": 0,
+"petals": 0,
+"unlocked": true,
+"unlocks": "Level3"
+}
+}

@@ -1,0 +1,94 @@
+[gd_scene load_steps=11 format=3 uid="uid://c27opkh6gutnk"]
+
+[ext_resource type="Script" path="res://Scripts/UI & Camera/MainMenu.gd" id="1_1dv80"]
+[ext_resource type="Texture2D" uid="uid://dp2qy6s40540q" path="res://Sprites/Menu/menubuttons.png" id="2_txaav"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbu6c"]
+atlas = ExtResource("2_txaav")
+region = Rect2(11, 16, 40, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7an5"]
+atlas = ExtResource("2_txaav")
+region = Rect2(11, 32, 40, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fu7k"]
+atlas = ExtResource("2_txaav")
+region = Rect2(56, 16, 40, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mng6"]
+atlas = ExtResource("2_txaav")
+region = Rect2(56, 32, 40, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5e5j"]
+atlas = ExtResource("2_txaav")
+region = Rect2(61, 81, 3, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xyxs"]
+atlas = ExtResource("2_txaav")
+region = Rect2(61, 81, 3, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6byro"]
+atlas = ExtResource("2_txaav")
+region = Rect2(11, 83, 49, 6)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v8ass"]
+texture = SubResource("AtlasTexture_6byro")
+texture_margin_left = 3.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[node name="MainMenu" type="ColorRect"]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.411765, 0, 0.254902, 1)
+script = ExtResource("1_1dv80")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(320, 189.35)
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Play" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_fbu6c")
+texture_hover = SubResource("AtlasTexture_q7an5")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Quit" type="TextureButton" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_4fu7k")
+texture_hover = SubResource("AtlasTexture_0mng6")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 258.555
+offset_top = 216.145
+offset_right = 382.404
+offset_bottom = 232.145
+size_flags_vertical = 4
+alignment = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_icons/grabber = SubResource("AtlasTexture_e5e5j")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_7xyxs")
+theme_override_styles/slider = SubResource("StyleBoxTexture_v8ass")
+min_value = -45.0
+max_value = 20.0
+value = 1.0
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Quit" to="." method="_on_quit_pressed"]
+[connection signal="value_changed" from="VBoxContainer2/HSlider" to="." method="_on_h_slider_value_changed"]

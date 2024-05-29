@@ -1,0 +1,830 @@
+[gd_scene load_steps=36 format=3 uid="uid://ddcogjgfpvi1p"]
+
+[ext_resource type="Script" path="res://Scripts/UI & Camera/WorldMap.gd" id="1_1x7wn"]
+[ext_resource type="Texture2D" uid="uid://cn7py3aetqyjt" path="res://Sprites/WorldMap/worldmap.png" id="2_jw65n"]
+[ext_resource type="Script" path="res://Scripts/Player Management/WorldMapLevel.gd" id="3_tnrpx"]
+[ext_resource type="Texture2D" uid="uid://bpocghespwq37" path="res://Sprites/WorldMap/unlocked.png" id="4_vex1f"]
+[ext_resource type="Texture2D" uid="uid://t5o3fgaqeqxr" path="res://Sprites/CompletionIcons/allpetalsicon.png" id="5_wi7kn"]
+[ext_resource type="Texture2D" uid="uid://bopxhqb1y0hpo" path="res://Sprites/CompletionIcons/nodeathicon.png" id="6_hk6g2"]
+[ext_resource type="Texture2D" uid="uid://px7lblilslrs" path="res://Sprites/WorldMap/locked.png" id="7_81d1n"]
+[ext_resource type="Texture2D" uid="uid://cnhvr18dm0m2y" path="res://UI/WorldMap/Perry.png" id="8_ljge2"]
+
+[sub_resource type="Animation" id="Animation_en6y5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoldHeart:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_hk6g2")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GoldLotus:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_wi7kn")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GoldLotus:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GoldHeart:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GoldLotus:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GoldHeart:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0nnfx"]
+resource_name = "show"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoldHeart:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_hk6g2")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GoldLotus:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_wi7kn")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GoldLotus:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GoldHeart:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GoldLotus:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-19, -24)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GoldHeart:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(22, -22)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n1qrr"]
+_data = {
+"RESET": SubResource("Animation_en6y5"),
+"show": SubResource("Animation_0nnfx")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o44gx"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(120, 50, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grbmx"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(0, 0, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtxj3"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(30, 0, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa613"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(60, 0, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_preuu"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(90, 0, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmsk1"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(30, 200, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84ne6"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(0, 150, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eeci"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(30, 150, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7ek7"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(60, 150, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1idj"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(60, 100, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkphh"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(90, 100, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8v7p"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(120, 100, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvxb3"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(90, 150, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgnye"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(120, 150, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85v4t"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(0, 200, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41rl0"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(60, 200, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijhxf"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(120, 0, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccrxd"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(0, 50, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7371p"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(30, 50, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw4e2"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(60, 50, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vwpy"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(90, 50, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0wq5"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(0, 100, 30, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jppfv"]
+atlas = ExtResource("8_ljge2")
+region = Rect2(30, 100, 30, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mowp6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o44gx")
+}],
+"loop": true,
+"name": &"Grab",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grbmx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtxj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa613")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa613")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa613")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa613")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_preuu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grbmx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grbmx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grbmx")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmsk1")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84ne6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eeci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7ek7")
+}],
+"loop": true,
+"name": &"Parry_D",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1idj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkphh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8v7p")
+}],
+"loop": true,
+"name": &"Parry_F",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvxb3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgnye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85v4t")
+}],
+"loop": true,
+"name": &"Parry_U",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grbmx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41rl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41rl0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41rl0")
+}],
+"loop": true,
+"name": &"Slide",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijhxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccrxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7371p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw4e2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vwpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o44gx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0wq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jppfv")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 10.0
+}]
+
+[node name="WorldMap" type="Node2D"]
+script = ExtResource("1_1x7wn")
+
+[node name="BGColour" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0283934, 0.0949006, 1)
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -120.0
+offset_right = -33.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+texture = ExtResource("2_jw65n")
+
+[node name="LevelHolder" type="Node2D" parent="."]
+
+[node name="Level1" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+position = Vector2(-70, 15)
+script = ExtResource("3_tnrpx")
+right = NodePath("../Level2")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level1"]
+scale = Vector2(3, 3)
+texture = ExtResource("4_vex1f")
+
+[node name="StatDisplay" type="Node2D" parent="LevelHolder/Level1"]
+visible = false
+
+[node name="GoldLotus" type="Sprite2D" parent="LevelHolder/Level1/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("5_wi7kn")
+
+[node name="GoldHeart" type="Sprite2D" parent="LevelHolder/Level1/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("6_hk6g2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelHolder/Level1/StatDisplay"]
+libraries = {
+"": SubResource("AnimationLibrary_n1qrr")
+}
+
+[node name="Level2" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("left", "right")]
+position = Vector2(-42, 37)
+script = ExtResource("3_tnrpx")
+left = NodePath("../Level1")
+right = NodePath("../Level3")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level2"]
+scale = Vector2(3, 3)
+texture = ExtResource("7_81d1n")
+
+[node name="StatDisplay" type="Node2D" parent="LevelHolder/Level2"]
+visible = false
+
+[node name="GoldLotus" type="Sprite2D" parent="LevelHolder/Level2/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("5_wi7kn")
+
+[node name="GoldHeart" type="Sprite2D" parent="LevelHolder/Level2/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("6_hk6g2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelHolder/Level2/StatDisplay"]
+libraries = {
+"": SubResource("AnimationLibrary_n1qrr")
+}
+
+[node name="Level3" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("left", "right")]
+position = Vector2(-2, 49)
+script = ExtResource("3_tnrpx")
+left = NodePath("../Level2")
+right = NodePath("../Level4")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level3"]
+scale = Vector2(3, 3)
+texture = ExtResource("7_81d1n")
+
+[node name="StatDisplay" type="Node2D" parent="LevelHolder/Level3"]
+visible = false
+
+[node name="GoldLotus" type="Sprite2D" parent="LevelHolder/Level3/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("5_wi7kn")
+
+[node name="GoldHeart" type="Sprite2D" parent="LevelHolder/Level3/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("6_hk6g2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelHolder/Level3/StatDisplay"]
+libraries = {
+"": SubResource("AnimationLibrary_n1qrr")
+}
+
+[node name="Level4" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+script = ExtResource("3_tnrpx")
+right = NodePath("../Level5")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level4"]
+position = Vector2(37, 34)
+scale = Vector2(3, 3)
+texture = ExtResource("7_81d1n")
+
+[node name="StatDisplay" type="Node2D" parent="LevelHolder/Level4"]
+visible = false
+
+[node name="GoldLotus" type="Sprite2D" parent="LevelHolder/Level4/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("5_wi7kn")
+
+[node name="GoldHeart" type="Sprite2D" parent="LevelHolder/Level4/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("6_hk6g2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelHolder/Level4/StatDisplay"]
+libraries = {
+"": SubResource("AnimationLibrary_n1qrr")
+}
+
+[node name="Level5" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+script = ExtResource("3_tnrpx")
+right = NodePath("../Level6")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level5"]
+position = Vector2(63, 7)
+scale = Vector2(3, 3)
+texture = ExtResource("7_81d1n")
+
+[node name="StatDisplay" type="Node2D" parent="LevelHolder/Level5"]
+visible = false
+
+[node name="GoldLotus" type="Sprite2D" parent="LevelHolder/Level5/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("5_wi7kn")
+
+[node name="GoldHeart" type="Sprite2D" parent="LevelHolder/Level5/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("6_hk6g2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelHolder/Level5/StatDisplay"]
+libraries = {
+"": SubResource("AnimationLibrary_n1qrr")
+}
+
+[node name="Level6" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+script = ExtResource("3_tnrpx")
+right = NodePath("../Level7")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level6"]
+position = Vector2(48, -18)
+scale = Vector2(3, 3)
+texture = ExtResource("7_81d1n")
+
+[node name="StatDisplay" type="Node2D" parent="LevelHolder/Level6"]
+visible = false
+
+[node name="GoldLotus" type="Sprite2D" parent="LevelHolder/Level6/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("5_wi7kn")
+
+[node name="GoldHeart" type="Sprite2D" parent="LevelHolder/Level6/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("6_hk6g2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelHolder/Level6/StatDisplay"]
+libraries = {
+"": SubResource("AnimationLibrary_n1qrr")
+}
+
+[node name="Level7" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+script = ExtResource("3_tnrpx")
+right = NodePath("../Level8")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level7"]
+position = Vector2(38, -43)
+scale = Vector2(3, 3)
+texture = ExtResource("7_81d1n")
+
+[node name="StatDisplay" type="Node2D" parent="LevelHolder/Level7"]
+visible = false
+
+[node name="GoldLotus" type="Sprite2D" parent="LevelHolder/Level7/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("5_wi7kn")
+
+[node name="GoldHeart" type="Sprite2D" parent="LevelHolder/Level7/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("6_hk6g2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelHolder/Level7/StatDisplay"]
+libraries = {
+"": SubResource("AnimationLibrary_n1qrr")
+}
+
+[node name="Level8" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+script = ExtResource("3_tnrpx")
+right = NodePath("../Level9")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level8"]
+position = Vector2(0, -30)
+scale = Vector2(3, 3)
+texture = ExtResource("7_81d1n")
+
+[node name="StatDisplay" type="Node2D" parent="LevelHolder/Level8"]
+visible = false
+
+[node name="GoldLotus" type="Sprite2D" parent="LevelHolder/Level8/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("5_wi7kn")
+
+[node name="GoldHeart" type="Sprite2D" parent="LevelHolder/Level8/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("6_hk6g2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelHolder/Level8/StatDisplay"]
+libraries = {
+"": SubResource("AnimationLibrary_n1qrr")
+}
+
+[node name="Level9" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+script = ExtResource("3_tnrpx")
+right = NodePath("../Level10")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level9"]
+position = Vector2(-39, -39)
+scale = Vector2(3, 3)
+texture = ExtResource("7_81d1n")
+
+[node name="StatDisplay" type="Node2D" parent="LevelHolder/Level9"]
+visible = false
+
+[node name="GoldLotus" type="Sprite2D" parent="LevelHolder/Level9/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("5_wi7kn")
+
+[node name="GoldHeart" type="Sprite2D" parent="LevelHolder/Level9/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("6_hk6g2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelHolder/Level9/StatDisplay"]
+libraries = {
+"": SubResource("AnimationLibrary_n1qrr")
+}
+
+[node name="Level10" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+script = ExtResource("3_tnrpx")
+right = NodePath("../Level11")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level10"]
+position = Vector2(-27, -68)
+scale = Vector2(3, 3)
+texture = ExtResource("7_81d1n")
+
+[node name="StatDisplay" type="Node2D" parent="LevelHolder/Level10"]
+visible = false
+
+[node name="GoldLotus" type="Sprite2D" parent="LevelHolder/Level10/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("5_wi7kn")
+
+[node name="GoldHeart" type="Sprite2D" parent="LevelHolder/Level10/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("6_hk6g2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelHolder/Level10/StatDisplay"]
+libraries = {
+"": SubResource("AnimationLibrary_n1qrr")
+}
+
+[node name="Level11" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+script = ExtResource("3_tnrpx")
+right = NodePath("../Level12")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level11"]
+position = Vector2(-12, -91)
+scale = Vector2(3, 3)
+texture = ExtResource("7_81d1n")
+
+[node name="StatDisplay" type="Node2D" parent="LevelHolder/Level11"]
+visible = false
+
+[node name="GoldLotus" type="Sprite2D" parent="LevelHolder/Level11/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("5_wi7kn")
+
+[node name="GoldHeart" type="Sprite2D" parent="LevelHolder/Level11/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("6_hk6g2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelHolder/Level11/StatDisplay"]
+libraries = {
+"": SubResource("AnimationLibrary_n1qrr")
+}
+
+[node name="Level12" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+script = ExtResource("3_tnrpx")
+right = NodePath("../Level13")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level12"]
+position = Vector2(12, -95)
+scale = Vector2(3, 3)
+texture = ExtResource("7_81d1n")
+
+[node name="StatDisplay" type="Node2D" parent="LevelHolder/Level12"]
+visible = false
+
+[node name="GoldLotus" type="Sprite2D" parent="LevelHolder/Level12/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("5_wi7kn")
+
+[node name="GoldHeart" type="Sprite2D" parent="LevelHolder/Level12/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("6_hk6g2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelHolder/Level12/StatDisplay"]
+libraries = {
+"": SubResource("AnimationLibrary_n1qrr")
+}
+
+[node name="Level13" type="Node2D" parent="LevelHolder"]
+script = ExtResource("3_tnrpx")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level13"]
+position = Vector2(0, -120)
+scale = Vector2(3, 3)
+texture = ExtResource("7_81d1n")
+
+[node name="StatDisplay" type="Node2D" parent="LevelHolder/Level13"]
+visible = false
+
+[node name="GoldLotus" type="Sprite2D" parent="LevelHolder/Level13/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("5_wi7kn")
+
+[node name="GoldHeart" type="Sprite2D" parent="LevelHolder/Level13/StatDisplay"]
+scale = Vector2(3, 3)
+texture = ExtResource("6_hk6g2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelHolder/Level13/StatDisplay"]
+libraries = {
+"": SubResource("AnimationLibrary_n1qrr")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -31)
+scale = Vector2(2, 2)
+zoom = Vector2(1.735, 1.735)
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(-70, 15)
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="Player"]
+texture_filter = 1
+position = Vector2(0, -20)
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_mowp6")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.720783
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "C:/Users/CaptnJayce/Projects/Aseprite/ParryTheFloor/Anims/Perry.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "0e82da21bb0f2f4adfb70f4e6572ca50"

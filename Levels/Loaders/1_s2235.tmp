@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://k4q0nwxrp64y"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/LoadHandling.gd" id="1_78cxf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rndr5"]
+height = 878.0
+
+[node name="1_Start" type="Node2D"]
+script = ExtResource("1_78cxf")
+
+[node name="Start" type="Area2D" parent="." groups=["1_start"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Start"]
+shape = SubResource("CapsuleShape2D_rndr5")
+
+[connection signal="area_entered" from="Start" to="." method="_on_start_area_entered"]

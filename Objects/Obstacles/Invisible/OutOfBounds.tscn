@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://6rack23dl4oo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2b36"]
+size = Vector2(889.275, 38)
+
+[node name="OutOfBounds" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="." groups=["Kill"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-128, 0)
+rotation = -3.14159
+scale = Vector2(165.746, -199.352)
+shape = SubResource("RectangleShape2D_e2b36")
+debug_color = Color(1, 0.0117647, 0.00784314, 0.419608)

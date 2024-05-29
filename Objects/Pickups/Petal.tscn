@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://eyilnx0c7fjm"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Petal.gd" id="1_8asdu"]
+[ext_resource type="Texture2D" uid="uid://c5bjr4b8jjquq" path="res://Sprites/Spritesheets/PTFcollectibles.png" id="2_f18g4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6x80"]
+size = Vector2(11.0234, 14.0156)
+
+[node name="Petal" type="Area2D" groups=["Mango1"]]
+scale = Vector2(1.25, 1.25)
+script = ExtResource("1_8asdu")
+petals = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.00390625, 0.00781274)
+shape = SubResource("RectangleShape2D_l6x80")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_f18g4")
+region_enabled = true
+region_rect = Rect2(2, 1, 11, 14)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

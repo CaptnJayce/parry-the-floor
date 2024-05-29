@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6vcxqw76qu3l"]
+
+[ext_resource type="Texture2D" uid="uid://bxu1ji7kwgp6u" path="res://Sprites/Spritesheets/PTFtileset.png" id="1_fbwtv"]
+
+[node name="Background" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(215906, 142431)
+texture = ExtResource("1_fbwtv")
+region_enabled = true
+region_rect = Rect2(0, 32, 1, 1)

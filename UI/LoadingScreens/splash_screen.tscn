@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d05uum3eh2e6s"]
+
+[ext_resource type="Texture2D" uid="uid://b4wk21314qy05" path="res://Sprites/LoadingScreens/splash.png" id="1_x1sn0"]
+
+[sub_resource type="Gradient" id="Gradient_nyxqh"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ugfex"]
+gradient = SubResource("Gradient_nyxqh")
+
+[node name="SplashScreen" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 640.0
+offset_bottom = 361.0
+texture = SubResource("GradientTexture1D_ugfex")
+
+[node name="Splash" type="Sprite2D" parent="."]
+position = Vector2(315.954, 180.229)
+scale = Vector2(5.63582, 5.63582)
+texture = ExtResource("1_x1sn0")
