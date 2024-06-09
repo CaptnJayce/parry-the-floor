@@ -19,6 +19,8 @@ func _on_play_pressed():
 	get_tree().change_scene_to_file("res://UI/WorldMap/WorldMap.tscn")
 func _on_quit_pressed():
 	get_tree().quit()
+func _on_delete_save_pressed():
+	Signals.emit_signal("delete") #Signals go to SaveLoad.gd
 
 func _on_h_slider_value_changed(v:float):
 	Signals.music_volume = $VBoxContainer2/HSlider.value
@@ -28,4 +30,7 @@ func _on_h_slider_value_changed(v:float):
 		AudioServer.set_bus_mute(0,true)
 	else:
 		AudioServer.set_bus_mute(0,false)
+
+
+
 

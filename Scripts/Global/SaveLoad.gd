@@ -1,18 +1,49 @@
 extends Node
-# things to save
-# player position from checkpoint
-# death counter
-# music volume
-# level data (done)
 
-var save_path = "res://Scripts/TestSave/"
-var save_name = "save1.tres"
-var save_data = SaveData.new()
+var save_path = "res://ptf_save.save"
+
+var default_level_dict = { 
+	"Level1" : {
+		"unlocked" : true,
+		"petals" : 0,
+		"max_petals" : 0,
+		"damage_taken" : 0,
+		"unlocks" : "Level2",
+		"beaten" : false,
+		"last_checkpoint" : Vector2()
+	}
+}
+
+var default_petal_dict = {
+	"petals" : {
+		1 : false,
+		2 : false,
+		3 : false
+	}
+}
+
+func _ready():
+	Signals.connect("delete", _delete)
+
+func _delete():
+	DirAccess.remove_absolute(save_path)
 
 func load_game():
-	save_data = ResourceLoader.load(save_path + save_name).duplicate(true)
-	LevelData.level_dic = save_data.level_dic
-	
+	if FileAccess.file_exists(save_path):
+		var file = FileAccess.open(save_path, FileAccess.READ)
+		print("file exists")
+		LevelData.level_dict = file.get_var()
+		LevelData.petal_dict = file.get_var()
+		Signals.death_counter = file.get_var()
+	else:
+		print("file doesnt exist")
+		default_level_dict["last_checkpoint"] = Vector2(0, 48)
+		LevelData.level_dict = default_level_dict
+		LevelData.petal_dict = default_petal_dict
+		Signals.death_counter = 0
+
 func save_game():
-	save_data.level_dic = LevelData.level_dic
-	ResourceSaver.save(save_data, save_path + save_name)
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_var(LevelData.level_dict)
+	file.store_var(LevelData.petal_dict)
+	file.store_var(Signals.death_counter)

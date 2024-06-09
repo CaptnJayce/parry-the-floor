@@ -19,10 +19,10 @@ func _ready():
 
 func update_levels():
 	for level in levels:
-		if level.name in LevelData.level_dic:
-			if LevelData.level_dic[level.name]["unlocked"] == true:
+		if level.name in LevelData.level_dict:
+			if LevelData.level_dict[level.name]["unlocked"] == true:
 				level.get_node("Sprite2D").texture = load("res://Sprites/WorldMap/unlocked.png")
-				if LevelData.level_dic[level.name]["beaten"] == true:
+				if LevelData.level_dict[level.name]["beaten"] == true:
 					level.get_node("Sprite2D").texture = load("res://Sprites/WorldMap/beaten.png")
 			else:
 				level.get_node("Sprite2D").texture = load("res://Sprites/WorldMap/locked.png")
@@ -48,7 +48,7 @@ func _process(delta):
 		await get_tree().create_timer(0.4).timeout
 		get_tree().change_scene_to_file("res://Levels/Test Levels/" + curr_level.name + ".tscn")
 
-	if target_level and target_level.name in LevelData.level_dic and LevelData.level_dic[target_level.name]["unlocked"] and completed_movement:
+	if target_level and target_level.name in LevelData.level_dict and LevelData.level_dict[target_level.name]["unlocked"] and completed_movement:
 		completed_movement = false
 		lerp_progress = 0.0
 		while lerp_progress < 1.0:
@@ -67,18 +67,18 @@ func _process(delta):
 
 func show_stats(target_level):
 	print(LevelData.damage_taken)
-	if LevelData.level_dic[target_level.name]["unlocked"]:
+	if LevelData.level_dict[target_level.name]["unlocked"]:
 		target_level.get_node("StatDisplay").visible = true
 		target_level.get_node("StatDisplay").get_node("AnimationPlayer").play("show")
 	
 	curr_level.get_node("StatDisplay").get_node("AnimationPlayer").play("show", 0, -1.0, true)
 	
-	if LevelData.level_dic[target_level.name]["petals"] == LevelData.level_dic[target_level.name]["max_petals"] and LevelData.level_dic[target_level.name]["max_petals"] > 0:
+	if LevelData.level_dict[target_level.name]["petals"] == LevelData.level_dict[target_level.name]["max_petals"] and LevelData.level_dict[target_level.name]["max_petals"] > 0:
 		target_level.get_node("StatDisplay").get_node("GoldLotus").visible = true
 	else:
 		target_level.get_node("StatDisplay").get_node("GoldLotus").visible = false
 	
-	if LevelData.level_dic[target_level.name]["damage_taken"] == 0 and LevelData.level_dic[target_level.name]["beaten"] == true:
+	if LevelData.level_dict[target_level.name]["damage_taken"] == 0 and LevelData.level_dict[target_level.name]["beaten"] == true:
 		target_level.get_node("StatDisplay").get_node("GoldHeart").visible = true
 	else:
 		target_level.get_node("StatDisplay").get_node("GoldHeart").visible = false

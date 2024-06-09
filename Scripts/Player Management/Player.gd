@@ -13,7 +13,7 @@ var v_modify = 2000
 # MOVEMENT RELATED VARIABLES
 var speed = 350 # Player speed 
 const slide = 200 # Added to player speed when sliding
-var jump = -350 # Player jump height
+var jump = -250 # Player jump height
 var slide_jump = -75 # Added to jump when sliding
 var gravity = 980 # Gravity Intensity
 
@@ -27,6 +27,11 @@ var gravity = 980 # Gravity Intensity
 func _ready():
 	animation = $AnimationPlayer
 	#LevelData.damage_taken = 0
+	if Signals.respawnpos_data == null:
+		pass
+	else:
+		print(Signals.respawnpos_data)
+		player.position = Signals.respawnpos_data
 
 func _process(_delta):
 	if Input.is_action_just_released("parry_r"):

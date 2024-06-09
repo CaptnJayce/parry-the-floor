@@ -150,13 +150,13 @@ position = Vector2(1325.99, 336.56)
 position = Vector2(32, 0.125498)
 
 [node name="RespawnFlag2" parent="." instance=ExtResource("10_u6o02")]
-position = Vector2(426.948, 64.2057)
+position = Vector2(498.487, 64.1467)
 
 [node name="next_level" parent="." instance=ExtResource("11_evl57")]
-offset_left = 658.497
-offset_top = 302.95
-offset_right = 658.497
-offset_bottom = 302.95
+offset_left = 593.497
+offset_top = 284.45
+offset_right = 593.497
+offset_bottom = 284.45
 rotation = 3.14159
 
 [node name="MovingPlatform" parent="." instance=ExtResource("13_s6l61")]
@@ -179,11 +179,10 @@ shape = SubResource("RectangleShape2D_cbii1")
 one_way_collision = true
 
 [node name="Petal" parent="." instance=ExtResource("12_6ye5f")]
-position = Vector2(155.625, 101.922)
-petal_id = 1
+position = Vector2(114.095, 72.1899)
 
-[node name="RespawnFlag3" parent="." instance=ExtResource("10_u6o02")]
-position = Vector2(468.489, 64.1486)
+[node name="Petal2" parent="." instance=ExtResource("12_6ye5f")]
+position = Vector2(175.281, 78.1298)
 
-[node name="RespawnFlag4" parent="." instance=ExtResource("10_u6o02")]
-position = Vector2(509.667, 64.1608)
+[node name="Petal3" parent="." instance=ExtResource("12_6ye5f")]
+position = Vector2(142.523, 99.2335)

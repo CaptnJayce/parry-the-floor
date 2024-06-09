@@ -71,6 +71,15 @@ layout_mode = 2
 texture_normal = SubResource("AtlasTexture_4fu7k")
 texture_hover = SubResource("AtlasTexture_0mng6")
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Delete Save" type="TextureButton" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_4fu7k")
+texture_hover = SubResource("AtlasTexture_0mng6")
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 2
 offset_left = 258.555
@@ -91,4 +100,5 @@ value = 1.0
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/Delete Save" to="." method="_on_delete_save_pressed"]
 [connection signal="value_changed" from="VBoxContainer2/HSlider" to="." method="_on_h_slider_value_changed"]

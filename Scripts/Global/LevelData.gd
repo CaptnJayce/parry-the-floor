@@ -5,26 +5,37 @@ var damage_taken
 signal level_beaten()
 signal petal_pickup()
 
-var level_dic = { 
+# ENSURE VALUES ARE ADDED IN SaveData AS WELL
+var level_dict = { 
 	"Level1" : {
 		"unlocked" : true,
 		"petals" : 0,
 		"max_petals" : 0,
 		"damage_taken" : 0,
 		"unlocks" : "Level2",
-		"beaten" : false
+		"beaten" : false,
+		"last_checkpoint" : Vector2()
+	}
+}
+
+var petal_dict = {
+	"petals" : {
+		1 : false,
+		2 : false,
+		3 : false
 	}
 }
 
 func generate_level(level):
-	if level not in level_dic:
-		level_dic[level] = {
+	if level not in level_dict:
+		level_dict[level] = {
 			"unlocked" : false,
 			"petals" : 0,
 			"max_petals" : 0,
 			"damage_taken" : 0,
 			"unlocks" : generate_level_number(level),
-			"beaten" : false
+			"beaten" : false,
+			"last_checkpoint" : Vector2()
 		}
 
 func generate_level_number(level):
@@ -36,10 +47,10 @@ func generate_level_number(level):
 	return "Level" + str(level_number)
 
 func update_level(level, petals, max_petals, damage_taken, beaten):
-	level_dic[level]["petals"] = petals
-	level_dic[level]["max_petals"] = max_petals
-	level_dic[level]["damage_taken"] = damage_taken
-	level_dic[level]["beaten"] = beaten
+	level_dict[level]["petals"] = petals
+	level_dict[level]["max_petals"] = max_petals
+	level_dict[level]["damage_taken"] = damage_taken
+	level_dict[level]["beaten"] = beaten
 
 func petal_collected(petals_gained):
 	LevelData.petals += petals_gained

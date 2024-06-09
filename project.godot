@@ -17,7 +17,9 @@ config/custom_user_dir_name="ParryTheFloorSave"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/image="res://Sprites/LoadingScreens/splash.png"
 boot_splash/use_filter=false
-boot_splash/minimum_display_time=2500
+config/icon="res://Sprites/LoadingScreens/perry_smug.png"
+boot_splash/minimum_display_time=1000
+config/minimum_display_time=2000
 
 [audio]
 

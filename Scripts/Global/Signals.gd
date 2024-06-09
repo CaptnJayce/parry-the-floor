@@ -5,6 +5,8 @@ extends Node
 signal resume
 signal mute
 signal quit
+signal delete
+signal check_petals
 
 var music_volume
 var respawnpos_data

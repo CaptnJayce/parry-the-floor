@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cx3vtjvtecas"]
+[gd_scene load_steps=12 format=3 uid="uid://cx3vtjvtecas"]
 
 [ext_resource type="Script" path="res://Scripts/UI & Camera/Pause.gd" id="1_f2i8r"]
 [ext_resource type="Script" path="res://Scripts/Global/RunTime.gd" id="1_rj4jm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bxu1ji7kwgp6u" path="res://Sprites/Spritesheets/PTFtileset.png" id="3_j430u"]
 [ext_resource type="PackedScene" uid="uid://1bls1d50qhur" path="res://Objects/Obstacles/Invisible/RespawnFlag.tscn" id="6_giae8"]
 [ext_resource type="PackedScene" uid="uid://db2hdtruot58o" path="res://Levels/Loaders/Next Level/next_level.tscn" id="7_iydiw"]
+[ext_resource type="PackedScene" uid="uid://eyilnx0c7fjm" path="res://Objects/Pickups/Petal.tscn" id="9_rsuy2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ej5l"]
 texture = ExtResource("3_j430u")
@@ -118,3 +119,11 @@ offset_left = 210.585
 offset_top = 176.945
 offset_right = 210.585
 offset_bottom = 176.945
+
+[node name="Petal" parent="." instance=ExtResource("9_rsuy2")]
+position = Vector2(49, 190)
+petal_id = 3
+
+[node name="Petal2" parent="." instance=ExtResource("9_rsuy2")]
+position = Vector2(84, 195)
+petal_id = 2

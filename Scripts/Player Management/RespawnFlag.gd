@@ -12,11 +12,13 @@ func _ready():
 		animation.play("Unchecked")
 
 func activate():
-	activated = true
 	Signals.respawnpos_data = respawnpos.global_position
-	print(Signals.respawnpos_data)
+	LevelData.level_dict["last_checkpoint"] = Signals.respawnpos_data
+	SaveLoad.save_game()
 	animation.play("Checked")
-
+	print(Signals.respawnpos_data)
+	activated = true
+	
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player") && activated == false:
 		activate()
