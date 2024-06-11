@@ -21,7 +21,6 @@ var default_petal_dict = {
 		3 : false
 	}
 }
-
 func _ready():
 	Signals.connect("delete", _delete)
 

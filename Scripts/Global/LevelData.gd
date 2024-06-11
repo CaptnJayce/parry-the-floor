@@ -1,11 +1,11 @@
 extends Node
 
 var petals
+var max_petals
 var damage_taken
 signal level_beaten()
 signal petal_pickup()
 
-# ENSURE VALUES ARE ADDED IN SaveData AS WELL
 var level_dict = { 
 	"Level1" : {
 		"unlocked" : true,
@@ -46,15 +46,9 @@ func generate_level_number(level):
 	level_number = int(level_number) + 1
 	return "Level" + str(level_number)
 
-func update_level(level, petals, max_petals, damage_taken, beaten):
-	level_dict[level]["petals"] = petals
-	level_dict[level]["max_petals"] = max_petals
+func update_level(level, damage_taken, beaten):
 	level_dict[level]["damage_taken"] = damage_taken
 	level_dict[level]["beaten"] = beaten
-
-func petal_collected(petals_gained):
-	LevelData.petals += petals_gained
-	emit_signal("petal_pickup", petals_gained)
 
 func load_screen_to_scene(target: String) -> void:
 	var loading_screen = preload("res://Levels/Loaders/Loading Screen/loading_screen.tscn").instantiate()
@@ -64,3 +58,4 @@ func load_screen_to_scene(target: String) -> void:
 func win(): # emits to RunTime.gd
 	emit_signal("level_beaten")
 	SaveLoad.save_game()
+	

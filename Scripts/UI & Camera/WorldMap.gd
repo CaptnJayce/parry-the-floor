@@ -29,7 +29,7 @@ func update_levels():
 
 func _process(delta):
 	var target_level : Node2D
-	
+
 	if Input.is_action_pressed("ui_up"):
 		if curr_level.up:
 			target_level = curr_level.up
@@ -66,7 +66,9 @@ func _process(delta):
 		completed_movement = true
 
 func show_stats(target_level):
-	print(LevelData.damage_taken)
+	print(LevelData.level_dict[target_level.name]["petals"])
+	print(LevelData.level_dict[target_level.name]["max_petals"])
+
 	if LevelData.level_dict[target_level.name]["unlocked"]:
 		target_level.get_node("StatDisplay").visible = true
 		target_level.get_node("StatDisplay").get_node("AnimationPlayer").play("show")
@@ -77,8 +79,9 @@ func show_stats(target_level):
 		target_level.get_node("StatDisplay").get_node("GoldLotus").visible = true
 	else:
 		target_level.get_node("StatDisplay").get_node("GoldLotus").visible = false
-	
+
 	if LevelData.level_dict[target_level.name]["damage_taken"] == 0 and LevelData.level_dict[target_level.name]["beaten"] == true:
 		target_level.get_node("StatDisplay").get_node("GoldHeart").visible = true
 	else:
 		target_level.get_node("StatDisplay").get_node("GoldHeart").visible = false
+
