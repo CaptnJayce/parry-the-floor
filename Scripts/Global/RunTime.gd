@@ -3,6 +3,7 @@ class_name RuneTimeLevel
 
 @onready var level_name = name
 @onready var petal_count : int
+@export var level : String
 
 func _ready():
 	Signals.connect("quit", _quit_level)
@@ -32,13 +33,11 @@ func beat_level():
 	LevelData.generate_level(LevelData.level_dict[level_name]["unlocks"])
 	LevelData.level_dict[LevelData.level_dict[level_name]["unlocks"]]["unlocked"] = true
 	LevelData.update_level(level_name, LevelData.damage_taken, true)
-	# PROBLEM FOR TOMORROW
-	# update_level method is causing null values which prevent petal display from working as intended
-	print(LevelData.level_dict)
 	save_the_thing()
 
 	
 func _quit_level():
+	Signals.previous_level = level
 	save_the_thing()
 
 func save_the_thing():

@@ -44,7 +44,12 @@ func _process(delta):
 			target_level = curr_level.left
 	if Input.is_action_pressed("pause"):
 		get_tree().change_scene_to_file("res://UI/MainMenu/MainMenu.tscn")
+	
 	if Input.is_action_just_pressed("ui_accept"):
+		if Signals.previous_level == curr_level.name || Signals.previous_level == null:
+			pass
+		else:
+			Signals.respawnpos_data = null
 		await get_tree().create_timer(0.4).timeout
 		get_tree().change_scene_to_file("res://Levels/Test Levels/" + curr_level.name + ".tscn")
 
@@ -66,9 +71,6 @@ func _process(delta):
 		completed_movement = true
 
 func show_stats(target_level):
-	print(LevelData.level_dict[target_level.name]["petals"])
-	print(LevelData.level_dict[target_level.name]["max_petals"])
-
 	if LevelData.level_dict[target_level.name]["unlocked"]:
 		target_level.get_node("StatDisplay").visible = true
 		target_level.get_node("StatDisplay").get_node("AnimationPlayer").play("show")

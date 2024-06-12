@@ -16,7 +16,6 @@ func activate():
 	LevelData.level_dict["last_checkpoint"] = Signals.respawnpos_data
 	SaveLoad.save_game()
 	animation.play("Checked")
-	print(Signals.respawnpos_data)
 	activated = true
 	
 func _on_area_2d_body_entered(body):

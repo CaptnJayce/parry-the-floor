@@ -74,6 +74,7 @@ sources/2 = SubResource("TileSetAtlasSource_4ej5l")
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_rj4jm")
+level = "Level2"
 
 [node name="Audio1" parent="." instance=ExtResource("2_dagkl")]
 

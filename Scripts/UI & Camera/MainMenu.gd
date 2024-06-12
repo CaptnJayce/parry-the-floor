@@ -24,7 +24,6 @@ func _on_delete_save_pressed():
 
 func _on_h_slider_value_changed(v:float):
 	Signals.music_volume = $VBoxContainer2/HSlider.value
-	print("on main menu h slider changed")
 	AudioServer.set_bus_volume_db(0,v)
 	if v == -45:
 		AudioServer.set_bus_mute(0,true)

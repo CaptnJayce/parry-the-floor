@@ -16,6 +16,7 @@ const slide = 200 # Added to player speed when sliding
 var jump = -250 # Player jump height
 var slide_jump = -75 # Added to jump when sliding
 var gravity = 980 # Gravity Intensity
+var allow_input = true
 
 # ANIMATION
 @onready var marker2D=$Marker2D
@@ -26,25 +27,10 @@ var gravity = 980 # Gravity Intensity
 
 func _ready():
 	animation = $AnimationPlayer
-	#LevelData.damage_taken = 0
 	if Signals.respawnpos_data == null:
 		pass
 	else:
-		print(Signals.respawnpos_data)
 		player.position = Signals.respawnpos_data
-
-func _process(_delta):
-	if Input.is_action_just_released("parry_r"):
-		previous_direction = "right"
-		marker2D.scale.x=1
-		animation.play("Parry_F")
-	if Input.is_action_just_released("parry_l"):
-		previous_direction = "left"
-		marker2D.scale.x=-1
-		animation.play("Parry_F")
-	if Input.is_action_just_released("parry_d") && !is_on_floor():
-		previous_direction = "down"
-		animation.play("Parry_D")
 
 func _physics_process(delta):
 	var direction = Input.get_axis("m_left", "m_right")
@@ -61,12 +47,41 @@ func _physics_process(delta):
 
 	# TO PREVENT ANIMATION OVERRIDE
 	if velocity == Vector2.ZERO:
-		if $AnimationPlayer.current_animation == "Parry_F" || $AnimationPlayer.current_animation == "Parry_D" || $AnimationPlayer.current_animation == "Jump" && !is_on_floor():
+		if $AnimationPlayer.current_animation == "Parry_D" || !is_on_floor():
 			pass
 		else:
 			animation.play("Idle")
 
-	if $AnimationPlayer.is_playing() && $AnimationPlayer.current_animation == "Parry_F" || $AnimationPlayer.current_animation == "Parry_D" || $AnimationPlayer.current_animation == "Jump" && !is_on_floor() || $AnimationPlayer.current_animation == "Slide":
+	# WALL STUFF
+#	wall_slide(delta)
+
+	# MOVEMENT
+	if direction && allow_input == true:
+		velocity.x = direction * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+	move_and_slide()
+
+#func wall_slide(_delta):
+#	if is_on_wall() && !is_on_floor():
+#		if Input.is_action_pressed("m_right"):
+#			animation.play("Wall_Slide")
+#			marker2D.scale.x=-1
+#			velocity.y = 100
+#		if Input.is_action_pressed("m_left"):
+#			animation.play("Wall_Slide")
+#			marker2D.scale.x=1
+#			velocity.y = 100
+
+func _input(event : InputEvent):
+	if(event.is_action_pressed("m_down") && is_on_floor()):
+		position.y += 1
+
+	if Input.is_action_just_released("parry_d") && !is_on_floor():
+		previous_direction = "down"
+		animation.play("Parry_D")
+			
+	if $AnimationPlayer.is_playing() && $AnimationPlayer.current_animation == "Parry_F" || $AnimationPlayer.current_animation == "Parry_D" || $AnimationPlayer.current_animation == "Jump" && !is_on_floor() || $AnimationPlayer.current_animation == "Slide" || $AnimationPlayer.current_animation == "Wall_Slide":
 		pass
 	elif Input.is_action_just_pressed("m_slide") && Input.is_action_pressed("m_right"):
 		marker2D.scale.x=1
@@ -87,52 +102,10 @@ func _physics_process(delta):
 		marker2D.scale.x=-1
 		animation.play("Walk")
 
-	# WALL STUFF
-	wall_slide(delta)
-
-	# MOVEMENT
-	if direction:
-		velocity.x = direction * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-	move_and_slide()
-
-func wall_slide(_delta):
-	if is_on_wall() && !is_on_floor():
-		if Input.is_action_pressed("m_grab"):
-			velocity.y = 0
-			print("sliding")
-			if Input.is_action_pressed("parry_r"):
-				print("right")
-				velocity.x = -knockback_power_horizontal - 1500
-				velocity.y = -knockback_power_vertical + 100
-			elif Input.is_action_pressed("parry_l"):
-				print("left")
-				velocity.x = knockback_power_horizontal + 1500
-				velocity.y = -knockback_power_vertical + 100
-			elif Input.is_action_pressed("parry_d"):
-				print("down")
-				velocity.y = -knockback_power_vertical
-			else:
-				velocity.x = 0
-
-func _input(event : InputEvent):
-	if(event.is_action_pressed("m_down") && is_on_floor()):
-		position.y += 1
-
 # PARRY
 func _on_attack_box_area_entered(area):
-	if area.is_in_group("Collide") || is_on_wall() && !is_on_floor() && Input.is_action_pressed("m_grab"):
-		if previous_direction == "right":
-			print("right")
-			velocity.x = -knockback_power_horizontal - h_modify
-			velocity.y = -knockback_power_vertical + v_modify
-		elif previous_direction == "left":
-			print("left")
-			velocity.x = knockback_power_horizontal + h_modify
-			velocity.y = -knockback_power_vertical + v_modify
-		elif previous_direction == "down":
-			print("down")
+	if area.is_in_group("Collide") || is_on_wall() && !is_on_floor():
+		if previous_direction == "down":
 			velocity.y = -knockback_power_vertical
 		else:
 			velocity.x = 0

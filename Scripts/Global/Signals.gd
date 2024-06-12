@@ -11,6 +11,8 @@ signal mute
 signal petal_picked
 signal gold_lotus
 
+var previous_level
+
 var music_volume
 var respawnpos_data
 var death_counter : int

@@ -1,11 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://tacb7ydmc5ot"]
+[gd_scene load_steps=20 format=3 uid="uid://tacb7ydmc5ot"]
 
 [ext_resource type="Texture2D" uid="uid://d3mvkbkjmurdd" path="res://Objects/Characters/Perry/Perry.png" id="1_daafu"]
 [ext_resource type="Script" path="res://Scripts/Player Management/Player.gd" id="1_gh08y"]
 [ext_resource type="AudioStream" uid="uid://cas1ohaiuqy8l" path="res://Audio/SFX/Death.mp3" id="4_tri8g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cejif"]
-size = Vector2(5.97984, 18.4297)
+size = Vector2(13.0216, 20.8986)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mctnp"]
 radius = 14.0657
@@ -357,6 +357,33 @@ tracks/1/keys = {
 "values": [4, 5, 6, 7, 8, 9, 10, 11]
 }
 
+[sub_resource type="Animation" id="Animation_ba2v7"]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [23, 24, 25, 26]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gowsm"]
 _data = {
 "Grab": SubResource("Animation_nnb8p"),
@@ -367,7 +394,8 @@ _data = {
 "Parry_U": SubResource("Animation_memec"),
 "RESET": SubResource("Animation_dfrbf"),
 "Slide": SubResource("Animation_e7a40"),
-"Walk": SubResource("Animation_g2ell")
+"Walk": SubResource("Animation_g2ell"),
+"Wall_Slide": SubResource("Animation_ba2v7")
 }
 
 [node name="Perry" type="CharacterBody2D" groups=["Player"]]
@@ -380,9 +408,8 @@ script = ExtResource("1_gh08y")
 texture_filter = 1
 position = Vector2(0.5, -2.5)
 texture = ExtResource("1_daafu")
-hframes = 5
+hframes = 6
 vframes = 5
-frame = 9
 region_rect = Rect2(8, 17, 13, 23)
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
@@ -396,10 +423,10 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "C:/Users/CaptnJayce/Projects/Aseprite/ParryTheFloor/Anims/Perry.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "0e82da21bb0f2f4adfb70f4e6572ca50"
+metadata/_aseprite_wizard_source_file_hash_ = "0e50f59e1c080d6683b56e458bc7e093"
 
 [node name="PhysicsBox" type="CollisionShape2D" parent="."]
-position = Vector2(-0.00187963, 3.07422)
+position = Vector2(0.007985, 1.99241)
 scale = Vector2(1.004, 1)
 shape = SubResource("RectangleShape2D_cejif")
 
