@@ -45,15 +45,22 @@ color = Color(0.411765, 0, 0.254902, 1)
 script = ExtResource("1_1dv80")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 640.0
-offset_bottom = 360.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 320.0
+offset_top = 189.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(2, 2)
 pivot_offset = Vector2(320, 189.35)
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
@@ -64,6 +71,7 @@ texture_hover = SubResource("AtlasTexture_q7an5")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 alignment = 1
 
 [node name="Quit" type="TextureButton" parent="VBoxContainer/HBoxContainer2"]
@@ -83,9 +91,9 @@ texture_hover = SubResource("AtlasTexture_0mng6")
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 2
 offset_left = 258.555
-offset_top = 216.145
+offset_top = 233.74
 offset_right = 382.404
-offset_bottom = 232.145
+offset_bottom = 249.74
 size_flags_vertical = 4
 alignment = 1
 

@@ -35,7 +35,6 @@ func beat_level():
 	LevelData.update_level(level_name, LevelData.damage_taken, true)
 	save_the_thing()
 
-	
 func _quit_level():
 	Signals.previous_level = level
 	save_the_thing()
