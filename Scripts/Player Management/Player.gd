@@ -5,7 +5,14 @@ class_name Player
 
 # PARRY RELATED VARIABLES
 var previous_direction # Used in _process to store the previous parry direction
-var knockback_power_vertical = 450 # The vertical distance traveled when parrying
+var parry_dist = 450 # The vertical distance traveled when parrying
+var parry_dist_reset = 450
+var combo_count : int
+
+# COMBO RELATED VARIABLES
+var combo_1 = 50
+var combo_2 = 80
+var combo_3 = 125
 
 # MOVEMENT RELATED VARIABLES
 var speed = 250 # Player speed 
@@ -29,6 +36,11 @@ func _ready():
 		pass
 	else:
 		player.position = Signals.respawnpos_data
+
+func _process(delta):
+	if player.is_on_floor():
+		combo_count = 0
+		parry_dist = parry_dist_reset
 
 func _physics_process(delta):
 	direction = Input.get_axis("m_left", "m_right")
@@ -77,11 +89,27 @@ func _input(event : InputEvent):
 
 # ANIMATION STATE MACHINE
 func update_animation():
-	animation_tree.set("parameters/conditions/idle", velocity == Vector2.ZERO)
-	animation_tree.set("parameters/conditions/is_moving", velocity != Vector2.ZERO && is_on_floor())
-	animation_tree.set("parameters/conditions/parry", Input.is_action_just_pressed("parry_d")) 
-	animation_tree.set("parameters/conditions/jumping", Input.is_action_just_pressed("m_jump")) 
+	# Sets idle and walking anims
+	if velocity == Vector2.ZERO && is_on_floor():
+		animation_tree["parameters/conditions/idle"] = true
+		animation_tree["parameters/conditions/is_moving"] = false
+	else:
+		animation_tree["parameters/conditions/idle"] = false
+		animation_tree["parameters/conditions/is_moving"] = true
 
+	# Sets walking anim
+	if Input.is_action_just_pressed("parry_d"):
+		animation_tree["parameters/conditions/parry"] = true
+	else:
+		animation_tree["parameters/conditions/parry"] = false
+	
+	# Sets jumping anim
+	if Input.is_action_just_pressed("m_jump"):
+		animation_tree["parameters/conditions/jumping"] = true
+	else:
+		animation_tree["parameters/conditions/jumping"] = false
+	
+	# Sets sliding anim and movement bonuses
 	if Input.is_action_just_pressed("m_slide") && is_on_floor():
 		animation_tree["parameters/conditions/sliding"] = true
 		speed = speed + 200
@@ -91,7 +119,8 @@ func update_animation():
 		jump = -350
 	else:
 		animation_tree["parameters/conditions/sliding"] = false
-	
+
+	# I don't actually know what this does it was just in the tut
 	animation_tree["parameters/Idle/blend_position"] = direction
 	animation_tree["parameters/Parry/blend_position"] = direction
 	animation_tree["parameters/Walk/blend_position"] = direction
@@ -101,8 +130,27 @@ func update_animation():
 # PARRY
 func _on_attack_box_area_entered(area):
 	if area.is_in_group("Collide") || is_on_wall() && !is_on_floor():
+		combo_count += 1
+		print(combo_count)
+		
+		if combo_count == 1:
+			parry_dist = parry_dist_reset
+			parry_dist = parry_dist + combo_1
+		
+		if combo_count == 2: 
+			parry_dist = parry_dist_reset
+			parry_dist = parry_dist + combo_2
+			
+		if combo_count == 3:
+			parry_dist = parry_dist_reset
+			parry_dist = parry_dist + combo_3
+		
+		if combo_count > 3:
+			parry_dist = parry_dist_reset
+			combo_count = 1
+
 		if previous_direction == "down":
-			velocity.y = -knockback_power_vertical
+			velocity.y = -parry_dist
 		else:
 			velocity.x = 0
 
