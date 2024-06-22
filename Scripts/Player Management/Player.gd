@@ -65,8 +65,8 @@ func _physics_process(delta):
 	if Input.is_action_pressed("m_jump") and is_on_floor():
 		velocity.y = jump
 	
-# WALL STUFF
-#	wall_slide(delta)
+	# WALL STUFF
+	wall_slide(delta)
 
 	# MOVEMENT
 	if direction:
@@ -76,16 +76,8 @@ func _physics_process(delta):
 	move_and_slide()
 	update_animation()
 
-#func wall_slide(_delta):
-#	if is_on_wall() && !is_on_floor():
-#		if Input.is_action_pressed("m_right"):
-#			animation.play("Wall_Slide")
-#			marker2D.scale.x=-1
-#			velocity.y = 100
-#		if Input.is_action_pressed("m_left"):
-#			animation.play("Wall_Slide")
-#			marker2D.scale.x=1
-#			velocity.y = 100
+func wall_slide(_delta):
+	pass
 
 func _input(event : InputEvent):
 	if(event.is_action_pressed("m_down") && is_on_floor()):
@@ -104,14 +96,14 @@ func _input(event : InputEvent):
 # ANIMATION STATE MACHINE
 func update_animation():
 	# Sets idle and walking anims
-	if velocity == Vector2.ZERO && is_on_floor():
+	if velocity == Vector2.ZERO && is_on_floor() && !is_on_wall():
 		animation_tree["parameters/conditions/idle"] = true
 		animation_tree["parameters/conditions/is_moving"] = false
 	else:
 		animation_tree["parameters/conditions/idle"] = false
 		animation_tree["parameters/conditions/is_moving"] = true
 
-	# Sets walking anim
+	# Sets parry anim
 	if Input.is_action_just_pressed("parry_d"):
 		animation_tree["parameters/conditions/parry"] = true
 	else:
@@ -134,12 +126,26 @@ func update_animation():
 	else:
 		animation_tree["parameters/conditions/sliding"] = false
 
+	if is_on_wall() && !is_on_floor():
+		if Input.is_action_pressed("m_right"):
+			animation_tree["parameters/conditions/walling"] = true
+			marker2D.scale.x=-1
+			velocity.y = 100
+
+		if Input.is_action_pressed("m_left"):
+			animation_tree["parameters/conditions/walling"] = true
+			marker2D.scale.x=1
+			velocity.y = 100
+	else:
+		animation_tree["parameters/conditions/walling"] = false
+
 	# I don't actually know what this does it was just in the tut
 	animation_tree["parameters/Idle/blend_position"] = direction
 	animation_tree["parameters/Parry/blend_position"] = direction
 	animation_tree["parameters/Walk/blend_position"] = direction
 	animation_tree["parameters/Slide/blend_position"] = direction
 	animation_tree["parameters/Jump/blend_position"] = direction
+	animation_tree["parameters/Walling/blend_position"] = direction
 
 # PARRY
 func _on_attack_box_area_entered(area):

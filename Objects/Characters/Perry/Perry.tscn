@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://tacb7ydmc5ot"]
+[gd_scene load_steps=70 format=3 uid="uid://tacb7ydmc5ot"]
 
 [ext_resource type="Texture2D" uid="uid://d3mvkbkjmurdd" path="res://Objects/Characters/Perry/Perry.png" id="1_daafu"]
 [ext_resource type="Script" path="res://Scripts/Player Management/Player.gd" id="1_gh08y"]
@@ -527,6 +527,30 @@ min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gvka8"]
+animation = &"Wall_Slide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i8xql"]
+animation = &"Wall_Slide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lbbxc"]
+animation = &"Wall_Slide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_itcoi"]
+animation = &"Wall_Slide"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_gnxi6"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_gvka8")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_i8xql")
+blend_point_1/pos = Vector2(0, 1.1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_lbbxc")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_itcoi")
+blend_point_3/pos = Vector2(0, -1.1)
+min_space = Vector2(-1, -1.1)
+max_space = Vector2(1, 1.1)
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bgdlo"]
 advance_mode = 2
 
@@ -599,6 +623,14 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"jumping"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m3xb4"]
+advance_mode = 2
+advance_condition = &"walling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sg88x"]
+advance_mode = 2
+advance_condition = &"is_moving"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oa8c3"]
 states/End/position = Vector2(865, 98)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_om6lk")
@@ -606,14 +638,16 @@ states/Idle/position = Vector2(496, 98)
 states/Jump/node = SubResource("AnimationNodeBlendSpace2D_djd37")
 states/Jump/position = Vector2(366, -36)
 states/Parry/node = SubResource("AnimationNodeBlendSpace2D_xwbay")
-states/Parry/position = Vector2(366, 260)
+states/Parry/position = Vector2(366, 234)
 states/Slide/node = SubResource("AnimationNodeBlendSpace2D_rvxly")
 states/Slide/position = Vector2(547, -36)
 states/Start/position = Vector2(216, 98)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_gaiub")
 states/Walk/position = Vector2(667, 98)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_bgdlo"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_6j6p8"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_1g2x4"), "Idle", "Parry", SubResource("AnimationNodeStateMachineTransition_xbsqd"), "Parry", "Idle", SubResource("AnimationNodeStateMachineTransition_ljxw6"), "Walk", "Parry", SubResource("AnimationNodeStateMachineTransition_j65v3"), "Parry", "Walk", SubResource("AnimationNodeStateMachineTransition_7c8o6"), "Walk", "Slide", SubResource("AnimationNodeStateMachineTransition_rxhbe"), "Slide", "Walk", SubResource("AnimationNodeStateMachineTransition_qks4c"), "Slide", "Idle", SubResource("AnimationNodeStateMachineTransition_lcom4"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_0jnwx"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_jrag5"), "Slide", "Jump", SubResource("AnimationNodeStateMachineTransition_ii4k7"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_4m2p4"), "Jump", "Parry", SubResource("AnimationNodeStateMachineTransition_2ay5s"), "Jump", "Walk", SubResource("AnimationNodeStateMachineTransition_2pf7a"), "Parry", "Jump", SubResource("AnimationNodeStateMachineTransition_kbct5")]
-graph_offset = Vector2(-39, -53)
+states/Walling/node = SubResource("AnimationNodeBlendSpace2D_gnxi6")
+states/Walling/position = Vector2(719, -36)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_bgdlo"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_6j6p8"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_1g2x4"), "Idle", "Parry", SubResource("AnimationNodeStateMachineTransition_xbsqd"), "Parry", "Idle", SubResource("AnimationNodeStateMachineTransition_ljxw6"), "Walk", "Parry", SubResource("AnimationNodeStateMachineTransition_j65v3"), "Parry", "Walk", SubResource("AnimationNodeStateMachineTransition_7c8o6"), "Walk", "Slide", SubResource("AnimationNodeStateMachineTransition_rxhbe"), "Slide", "Walk", SubResource("AnimationNodeStateMachineTransition_qks4c"), "Slide", "Idle", SubResource("AnimationNodeStateMachineTransition_lcom4"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_0jnwx"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_jrag5"), "Slide", "Jump", SubResource("AnimationNodeStateMachineTransition_ii4k7"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_4m2p4"), "Jump", "Parry", SubResource("AnimationNodeStateMachineTransition_2ay5s"), "Jump", "Walk", SubResource("AnimationNodeStateMachineTransition_2pf7a"), "Parry", "Jump", SubResource("AnimationNodeStateMachineTransition_kbct5"), "Walk", "Walling", SubResource("AnimationNodeStateMachineTransition_m3xb4"), "Walling", "Walk", SubResource("AnimationNodeStateMachineTransition_sg88x")]
+graph_offset = Vector2(106, -82)
 
 [node name="Perry" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(2, 2)
@@ -627,7 +661,6 @@ position = Vector2(0.5, -2.5)
 texture = ExtResource("1_daafu")
 hframes = 6
 vframes = 5
-frame = 2
 region_rect = Rect2(8, 17, 13, 23)
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
@@ -691,11 +724,13 @@ parameters/conditions/is_moving = false
 parameters/conditions/jumping = false
 parameters/conditions/parry = false
 parameters/conditions/sliding = false
+parameters/conditions/walling = false
 parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Jump/blend_position = Vector2(0, 0)
 parameters/Parry/blend_position = Vector2(-0.00265253, -0.00385964)
 parameters/Slide/blend_position = Vector2(0, 0)
 parameters/Walk/blend_position = Vector2(0, 0)
+parameters/Walling/blend_position = Vector2(-0.000884175, -0.00484574)
 
 [node name="DeathSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_tri8g")
