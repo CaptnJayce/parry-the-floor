@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxu1ji7kwgp6u"
-path="res://.godot/imported/PTFtileset.png-6b7f9aee96d6a3ee305de0de7489f65c.ctex"
+uid="uid://cls7viiuyr442"
+path="res://.godot/imported/Tesla.png-cdbe1851d92269b0608bdb3fa979ca0f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Spritesheets/PTFtileset.png"
-dest_files=["res://.godot/imported/PTFtileset.png-6b7f9aee96d6a3ee305de0de7489f65c.ctex"]
+source_file="res://Sprites/Spritesheets/Tesla.png"
+dest_files=["res://.godot/imported/Tesla.png-cdbe1851d92269b0608bdb3fa979ca0f.ctex"]
 
 [params]
 

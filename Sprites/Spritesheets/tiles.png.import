@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5bjr4b8jjquq"
-path="res://.godot/imported/PTFcollectibles.png-72ae0755a4db0fa424c3b764cb1a1440.ctex"
+uid="uid://ds4qexxpu30hn"
+path="res://.godot/imported/tiles.png-48074257922f19303e485b9a338a20ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Spritesheets/PTFcollectibles.png"
-dest_files=["res://.godot/imported/PTFcollectibles.png-72ae0755a4db0fa424c3b764cb1a1440.ctex"]
+source_file="res://Sprites/Spritesheets/tiles.png"
+dest_files=["res://.godot/imported/tiles.png-48074257922f19303e485b9a338a20ea.ctex"]
 
 [params]
 

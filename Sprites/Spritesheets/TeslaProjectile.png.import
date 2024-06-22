@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxlni82dc11n7"
-path="res://.godot/imported/Spike.png-8af77d3407c8b52a2dca4c77ac6135c8.ctex"
+uid="uid://bo707n7jx1dsk"
+path="res://.godot/imported/TeslaProjectile.png-bbeb153f78911b24d275df3f62be0bea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Spritesheets/Spike.png"
-dest_files=["res://.godot/imported/Spike.png-8af77d3407c8b52a2dca4c77ac6135c8.ctex"]
+source_file="res://Sprites/Spritesheets/TeslaProjectile.png"
+dest_files=["res://.godot/imported/TeslaProjectile.png-bbeb153f78911b24d275df3f62be0bea.ctex"]
 
 [params]
 

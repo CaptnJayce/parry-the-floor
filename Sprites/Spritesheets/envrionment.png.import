@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhpbji4gkpxc4"
-path="res://.godot/imported/PTFtraps.png-8ae3d40904836ce18a9dc35ff3c83ff3.ctex"
+uid="uid://bd45qvf5ui72f"
+path="res://.godot/imported/envrionment.png-095029f4d413d14a65f2b07affb12c17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Spritesheets/PTFtraps.png"
-dest_files=["res://.godot/imported/PTFtraps.png-8ae3d40904836ce18a9dc35ff3c83ff3.ctex"]
+source_file="res://Sprites/Spritesheets/envrionment.png"
+dest_files=["res://.godot/imported/envrionment.png-095029f4d413d14a65f2b07affb12c17.ctex"]
 
 [params]
 

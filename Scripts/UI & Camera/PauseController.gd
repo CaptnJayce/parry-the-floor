@@ -6,7 +6,10 @@ func _process(_delta):
 	counter.text = str("Deaths: ", Signals.death_counter) 
 
 func _ready():
-	$SliderBox/HSlider.value = Signals.music_volume
+	if Signals.music_volume == null:
+		pass
+	else:
+		$SliderBox/HSlider.value = Signals.music_volume
 
 func _on_h_slider_value_changed(v:float):
 	AudioServer.set_bus_volume_db(0,v)

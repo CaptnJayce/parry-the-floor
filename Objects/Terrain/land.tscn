@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc78xfrfxvce"]
+
+[ext_resource type="Script" path="res://Levels/Test Levels/StaticBody2D.gd" id="1_3o8cn"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+disable_mode = 1
+script = ExtResource("1_3o8cn")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]

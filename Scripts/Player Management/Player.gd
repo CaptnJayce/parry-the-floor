@@ -15,8 +15,14 @@ var combo_2 = 80
 var combo_3 = 125
 
 # MOVEMENT RELATED VARIABLES
-var speed = 250 # Player speed 
+var speed = 125 # Player speed 
 var jump = -350 # Player jump height
+
+var sprint_speed = 350
+var slide_speed = 250
+var slide_jump = -50
+
+var sprinting : bool
 var gravity = 980 # Gravity Intensity
 var direction : float
 
@@ -29,18 +35,26 @@ var direction : float
 @onready var sound=$DeathSFX
 
 func _ready():
+	sprinting = false
 	animation = $AnimationPlayer
-	animation_tree.active
 
 	if Signals.respawnpos_data == null:
 		pass
 	else:
 		player.position = Signals.respawnpos_data
 
-func _process(delta):
+func _process(_delta):
 	if player.is_on_floor():
 		combo_count = 0
 		parry_dist = parry_dist_reset
+		
+	if Input.is_action_just_pressed("sprint"):
+		if sprinting == false:
+			sprinting = true
+			speed = sprint_speed
+		else:
+			sprinting = false
+			speed = 125
 
 func _physics_process(delta):
 	direction = Input.get_axis("m_left", "m_right")
@@ -50,8 +64,8 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	if Input.is_action_pressed("m_jump") and is_on_floor():
 		velocity.y = jump
-
-	# WALL STUFF
+	
+# WALL STUFF
 #	wall_slide(delta)
 
 	# MOVEMENT
@@ -86,7 +100,7 @@ func _input(event : InputEvent):
 		marker2D.scale.x=1
 	elif Input.is_action_pressed("m_left"):
 		marker2D.scale.x=-1
-
+	
 # ANIMATION STATE MACHINE
 func update_animation():
 	# Sets idle and walking anims
@@ -112,11 +126,11 @@ func update_animation():
 	# Sets sliding anim and movement bonuses
 	if Input.is_action_just_pressed("m_slide") && is_on_floor():
 		animation_tree["parameters/conditions/sliding"] = true
-		speed = speed + 200
-		jump = jump - 50
+		speed = speed + slide_speed
+		jump = jump + slide_jump
 		await get_tree().create_timer(0.4).timeout
-		speed = 250
-		jump = -350
+		speed = speed - slide_speed
+		jump = jump - slide_jump
 	else:
 		animation_tree["parameters/conditions/sliding"] = false
 

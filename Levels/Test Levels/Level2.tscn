@@ -5,13 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://s6i8dtxlp5yq" path="res://UI/Pause/PauseMenu.tscn" id="2_7puit"]
 [ext_resource type="PackedScene" uid="uid://i85o8gkx4fsw" path="res://Audio/MusicPlayer/OnetoFour.tscn" id="2_dagkl"]
 [ext_resource type="PackedScene" uid="uid://tacb7ydmc5ot" path="res://Objects/Characters/Perry/Perry.tscn" id="3_874bd"]
-[ext_resource type="Texture2D" uid="uid://bxu1ji7kwgp6u" path="res://Sprites/Spritesheets/PTFtileset.png" id="3_j430u"]
 [ext_resource type="PackedScene" uid="uid://1bls1d50qhur" path="res://Objects/Obstacles/Invisible/RespawnFlag.tscn" id="6_giae8"]
 [ext_resource type="PackedScene" uid="uid://db2hdtruot58o" path="res://Levels/Loaders/Next Level/next_level.tscn" id="7_iydiw"]
 [ext_resource type="PackedScene" uid="uid://eyilnx0c7fjm" path="res://Objects/Pickups/Petal.tscn" id="9_rsuy2"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0ad5w"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ej5l"]
-texture = ExtResource("3_j430u")
+texture = SubResource("CompressedTexture2D_0ad5w")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
