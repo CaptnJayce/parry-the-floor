@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dt1jqhwh0nlrp" path="res://Sprites/Animations/Spike.png" id="2_fehmt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqsuf"]
-size = Vector2(86, 116)
+size = Vector2(26, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr2ji"]
-size = Vector2(52, 26)
+size = Vector2(16, 9)
 
 [sub_resource type="Animation" id="Animation_6raux"]
 length = 0.5
@@ -150,13 +150,12 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D"]
-scale = Vector2(0.5, 0.5)
 script = ExtResource("1_qd32v")
 
 [node name="SpikeArea" type="Area2D" parent="." groups=["Slow"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeArea"]
-position = Vector2(33, -58)
+position = Vector2(34, -19.5)
 shape = SubResource("RectangleShape2D_lqsuf")
 
 [node name="Spikes" type="Area2D" parent="." groups=["Collide", "Kill"]]
@@ -164,8 +163,7 @@ collision_layer = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Spikes"]
 texture_filter = 1
-position = Vector2(34, -28)
-scale = Vector2(3.63194, 3.63194)
+position = Vector2(34, -13)
 texture = ExtResource("2_fehmt")
 hframes = 3
 vframes = 3
