@@ -18,7 +18,7 @@ var combo_3 = 125
 var speed = 125 # Player speed 
 var jump = -350 # Player jump height
 
-var sprint_speed = 350
+var sprint_speed = 300
 var slide_speed = 250
 var slide_jump = -50
 

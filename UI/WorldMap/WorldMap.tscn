@@ -812,8 +812,8 @@ position = Vector2(-70, 15)
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="Player"]
 texture_filter = 1
-position = Vector2(0, -20)
-scale = Vector2(1.75, 1.75)
+position = Vector2(0, -24.1294)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_mowp6")
 animation = &"Idle"
 autoplay = "Idle"

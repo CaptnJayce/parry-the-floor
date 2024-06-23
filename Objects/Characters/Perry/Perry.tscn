@@ -661,7 +661,6 @@ position = Vector2(0.555681, -2.08239)
 texture = ExtResource("1_daafu")
 hframes = 6
 vframes = 5
-frame = 2
 region_rect = Rect2(8, 17, 13, 23)
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,

@@ -7,7 +7,7 @@
 size = Vector2(26, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr2ji"]
-size = Vector2(16, 9)
+size = Vector2(16, 8)
 
 [sub_resource type="Animation" id="Animation_6raux"]
 length = 0.5
@@ -21,7 +21,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(34, -19), Vector2(34, -44), Vector2(34, -44), Vector2(34, -40)]
+"values": [Vector2(34, -10), Vector2(34, -17), Vector2(34, -17), Vector2(34, -16)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -81,10 +81,10 @@ tracks/2/path = NodePath("Spikes/CollisionShape2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(34, -19)]
+"values": [Vector2(34, -10), Vector2(34, -10)]
 }
 
 [sub_resource type="Animation" id="Animation_dj6ny"]
@@ -99,7 +99,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(34, -18)]
+"values": [Vector2(34, -17)]
 }
 
 [sub_resource type="Animation" id="Animation_fqhas"]
@@ -138,7 +138,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(34, -40), Vector2(34, -36), Vector2(34, -22), Vector2(34, -18)]
+"values": [Vector2(34, -16), Vector2(34, -15), Vector2(34, -11), Vector2(34, -10)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ng208"]
@@ -167,6 +167,7 @@ position = Vector2(34, -13)
 texture = ExtResource("2_fehmt")
 hframes = 3
 vframes = 3
+frame = 3
 region_rect = Rect2(37.8371, 88.675, 33.2421, 9.45914)
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
@@ -183,7 +184,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "f7ac1ad1c4438eb824e6425b81ac58ce"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes"]
-position = Vector2(34, -18)
+position = Vector2(34, -17)
 shape = SubResource("RectangleShape2D_xr2ji")
 debug_color = Color(1, 0, 0, 0.419608)
 
