@@ -10,6 +10,7 @@ func _ready():
 		animation.play("Checked")
 	else:
 		animation.play("Unchecked")
+	print(respawnpos.global_position)
 
 func activate():
 	Signals.respawnpos_data = respawnpos.global_position

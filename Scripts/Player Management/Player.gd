@@ -41,7 +41,9 @@ func _ready():
 	if Signals.respawnpos_data == null:
 		pass
 	else:
-		player.position = Signals.respawnpos_data
+		player.global_position = Signals.respawnpos_data
+
+	print(player.global_position)
 
 func _process(_delta):
 	if player.is_on_floor():
@@ -64,9 +66,6 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	if Input.is_action_pressed("m_jump") and is_on_floor():
 		velocity.y = jump
-	
-	# WALL STUFF
-	wall_slide(delta)
 
 	# MOVEMENT
 	if direction:
@@ -75,9 +74,6 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 	move_and_slide()
 	update_animation()
-
-func wall_slide(_delta):
-	pass
 
 func _input(event : InputEvent):
 	if(event.is_action_pressed("m_down") && is_on_floor()):
@@ -184,5 +180,5 @@ func die():
 	sound.play()
 	Signals.death_counter = Signals.death_counter + 1
 	LevelData.damage_taken += 1
-	player.position = Signals.respawnpos_data
+	player.global_position = Signals.respawnpos_data
 

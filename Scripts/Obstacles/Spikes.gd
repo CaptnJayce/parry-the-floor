@@ -2,8 +2,6 @@ extends Node2D
 class_name Spikes
 
 @onready var animation: AnimationPlayer
-var retract_playing = false
-var attack_playing = false
 
 func _ready():
 	animation = $AnimationPlayer

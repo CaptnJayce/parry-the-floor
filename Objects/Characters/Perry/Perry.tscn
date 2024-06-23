@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://cas1ohaiuqy8l" path="res://Audio/SFX/Death.mp3" id="4_tri8g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cejif"]
-size = Vector2(13.0216, 20.8986)
+size = Vector2(13.0216, 20.9778)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mctnp"]
 radius = 14.0657
@@ -17,7 +17,7 @@ radius = 13.0896
 radius = 10.5119
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74pw4"]
-size = Vector2(5.08115, 19.4451)
+size = Vector2(5.08115, 18.9425)
 
 [sub_resource type="Animation" id="Animation_nnb8p"]
 length = 0.1
@@ -677,7 +677,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "0e50f59e1c080d6683b56e458bc7e093"
 
 [node name="PhysicsBox" type="CollisionShape2D" parent="."]
-position = Vector2(0.007985, 1.99241)
+position = Vector2(0.007985, 2.032)
 scale = Vector2(1.004, 1)
 shape = SubResource("RectangleShape2D_cejif")
 

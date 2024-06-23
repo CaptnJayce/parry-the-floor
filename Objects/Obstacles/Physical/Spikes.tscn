@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=3 uid="uid://cxwqxqptoetfj"]
 
 [ext_resource type="Script" path="res://Scripts/Obstacles/Spikes.gd" id="1_qd32v"]
-[ext_resource type="Texture2D" uid="uid://bxlni82dc11n7" path="res://Sprites/Spritesheets/Spike.png" id="1_ywlxc"]
+[ext_resource type="Texture2D" uid="uid://dt1jqhwh0nlrp" path="res://Sprites/Animations/Spike.png" id="2_fehmt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqsuf"]
-size = Vector2(146, 114.5)
+size = Vector2(86, 116)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr2ji"]
-size = Vector2(106, 29)
+size = Vector2(52, 26)
 
 [sub_resource type="Animation" id="Animation_6raux"]
 length = 0.5
@@ -21,7 +21,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(34, 14), Vector2(34, -15), Vector2(34, -15), Vector2(34, -11)]
+"values": [Vector2(34, -19), Vector2(34, -44), Vector2(34, -44), Vector2(34, -40)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -84,7 +84,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(34, 14.5)]
+"values": [Vector2(34, -19)]
 }
 
 [sub_resource type="Animation" id="Animation_dj6ny"]
@@ -99,7 +99,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(34, 20.5)]
+"values": [Vector2(34, -18)]
 }
 
 [sub_resource type="Animation" id="Animation_fqhas"]
@@ -135,10 +135,10 @@ tracks/2/path = NodePath("Spikes/CollisionShape2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(34, -11), Vector2(34, -11), Vector2(34, 11), Vector2(34, 14.5), Vector2(34, 14.5)]
+"values": [Vector2(34, -40), Vector2(34, -36), Vector2(34, -22), Vector2(34, -18)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ng208"]
@@ -156,7 +156,7 @@ script = ExtResource("1_qd32v")
 [node name="SpikeArea" type="Area2D" parent="." groups=["Slow"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeArea"]
-position = Vector2(34, -24.75)
+position = Vector2(33, -58)
 shape = SubResource("RectangleShape2D_lqsuf")
 
 [node name="Spikes" type="Area2D" parent="." groups=["Collide", "Kill"]]
@@ -164,9 +164,9 @@ collision_layer = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Spikes"]
 texture_filter = 1
-position = Vector2(34, -2.98023e-08)
+position = Vector2(34, -28)
 scale = Vector2(3.63194, 3.63194)
-texture = ExtResource("1_ywlxc")
+texture = ExtResource("2_fehmt")
 hframes = 3
 vframes = 3
 region_rect = Rect2(37.8371, 88.675, 33.2421, 9.45914)
@@ -185,7 +185,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "f7ac1ad1c4438eb824e6425b81ac58ce"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes"]
-position = Vector2(34, 20.5)
+position = Vector2(34, -18)
 shape = SubResource("RectangleShape2D_xr2ji")
 debug_color = Color(1, 0, 0, 0.419608)
 
