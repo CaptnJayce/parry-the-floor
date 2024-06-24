@@ -32,7 +32,9 @@ var direction : float
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 # AUDIO 
-@onready var sound=$DeathSFX
+@onready var death_sound = $DeathSFX
+@onready var walk_sound = $WalkSFX
+@onready var sprint_sound = $SprintSFX
 
 func _ready():
 	sprinting = false
@@ -66,7 +68,27 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	if Input.is_action_pressed("m_jump") and is_on_floor():
 		velocity.y = jump
-
+	
+	if !is_on_floor() && walk_sound.playing || !is_on_floor() && sprint_sound.playing:
+		walk_sound.stop()
+		sprint_sound.stop()
+	
+	if velocity == Vector2.ZERO && walk_sound.playing:
+		walk_sound.stop()
+	if velocity == Vector2.ZERO && sprint_sound.playing:
+		sprint_sound.stop()
+	
+	if Input.is_action_pressed("m_right") && !walk_sound.playing || Input.is_action_pressed("m_left") && !walk_sound.playing:
+		if sprinting == false && !is_on_wall() && is_on_floor():
+			walk_sound.play()
+		if sprinting == false && sprint_sound.playing:
+			sprint_sound.stop()
+	if Input.is_action_pressed("m_right") && !sprint_sound.playing || Input.is_action_pressed("m_left") && !sprint_sound.playing:
+		if sprinting == true && !is_on_wall() && is_on_floor():
+			sprint_sound.play()
+		if sprinting == true && walk_sound.playing:
+			walk_sound.stop()
+	
 	# MOVEMENT
 	if direction:
 		velocity.x = direction * speed
@@ -177,7 +199,7 @@ func _on_hurt_box_area_entered(area):
 
 # DEATH
 func die():
-	sound.play()
+	death_sound.play()
 	Signals.death_counter = Signals.death_counter + 1
 	LevelData.damage_taken += 1
 	player.global_position = Signals.respawnpos_data

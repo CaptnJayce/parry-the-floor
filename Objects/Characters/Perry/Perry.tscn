@@ -1,8 +1,10 @@
-[gd_scene load_steps=70 format=3 uid="uid://tacb7ydmc5ot"]
+[gd_scene load_steps=72 format=3 uid="uid://tacb7ydmc5ot"]
 
 [ext_resource type="Texture2D" uid="uid://d3mvkbkjmurdd" path="res://Objects/Characters/Perry/Perry.png" id="1_daafu"]
 [ext_resource type="Script" path="res://Scripts/Player Management/Player.gd" id="1_gh08y"]
-[ext_resource type="AudioStream" uid="uid://cas1ohaiuqy8l" path="res://Audio/SFX/Death.mp3" id="4_tri8g"]
+[ext_resource type="AudioStream" uid="uid://b18ko5l6d7tgi" path="res://Audio/SFX/sfx_run.ogg" id="3_3lfpu"]
+[ext_resource type="AudioStream" uid="uid://dgfiwjm8e2p5m" path="res://Audio/SFX/sfx_walk.ogg" id="3_560xq"]
+[ext_resource type="AudioStream" uid="uid://cas1ohaiuqy8l" path="res://Audio/SFX/sfx_died.mp3" id="4_tri8g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cejif"]
 size = Vector2(13.0216, 19.9693)
@@ -661,6 +663,7 @@ position = Vector2(0.555681, -2.08239)
 texture = ExtResource("1_daafu")
 hframes = 6
 vframes = 5
+frame = 3
 region_rect = Rect2(8, 17, 13, 23)
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
@@ -732,6 +735,12 @@ parameters/Parry/blend_position = Vector2(-0.00265253, -0.00385964)
 parameters/Slide/blend_position = Vector2(0, 0)
 parameters/Walk/blend_position = Vector2(0, 0)
 parameters/Walling/blend_position = Vector2(-0.000884175, -0.00484574)
+
+[node name="SprintSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3lfpu")
+
+[node name="WalkSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_560xq")
 
 [node name="DeathSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_tri8g")
