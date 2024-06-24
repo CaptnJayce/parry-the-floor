@@ -150,6 +150,7 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_qd32v")
 
 [node name="SpikeArea" type="Area2D" parent="." groups=["Slow"]]

@@ -88,7 +88,7 @@ func _physics_process(delta):
 			sprint_sound.play()
 		if sprinting == true && walk_sound.playing:
 			walk_sound.stop()
-	
+
 	# MOVEMENT
 	if direction:
 		velocity.x = direction * speed

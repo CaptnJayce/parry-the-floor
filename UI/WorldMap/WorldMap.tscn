@@ -554,6 +554,7 @@ libraries = {
 }
 
 [node name="Level4" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+visible = false
 script = ExtResource("3_tnrpx")
 right = NodePath("../Level5")
 
@@ -579,6 +580,7 @@ libraries = {
 }
 
 [node name="Level5" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+visible = false
 script = ExtResource("3_tnrpx")
 right = NodePath("../Level6")
 
@@ -604,6 +606,7 @@ libraries = {
 }
 
 [node name="Level6" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+visible = false
 script = ExtResource("3_tnrpx")
 right = NodePath("../Level7")
 
@@ -629,6 +632,7 @@ libraries = {
 }
 
 [node name="Level7" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+visible = false
 script = ExtResource("3_tnrpx")
 right = NodePath("../Level8")
 
@@ -654,6 +658,7 @@ libraries = {
 }
 
 [node name="Level8" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+visible = false
 script = ExtResource("3_tnrpx")
 right = NodePath("../Level9")
 
@@ -679,6 +684,7 @@ libraries = {
 }
 
 [node name="Level9" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+visible = false
 script = ExtResource("3_tnrpx")
 right = NodePath("../Level10")
 
@@ -704,6 +710,7 @@ libraries = {
 }
 
 [node name="Level10" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+visible = false
 script = ExtResource("3_tnrpx")
 right = NodePath("../Level11")
 
@@ -729,6 +736,7 @@ libraries = {
 }
 
 [node name="Level11" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+visible = false
 script = ExtResource("3_tnrpx")
 right = NodePath("../Level12")
 
@@ -754,6 +762,7 @@ libraries = {
 }
 
 [node name="Level12" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+visible = false
 script = ExtResource("3_tnrpx")
 right = NodePath("../Level13")
 
@@ -779,6 +788,7 @@ libraries = {
 }
 
 [node name="Level13" type="Node2D" parent="LevelHolder"]
+visible = false
 script = ExtResource("3_tnrpx")
 
 [node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level13"]
