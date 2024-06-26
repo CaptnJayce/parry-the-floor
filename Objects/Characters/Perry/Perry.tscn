@@ -1,7 +1,7 @@
 [gd_scene load_steps=72 format=3 uid="uid://tacb7ydmc5ot"]
 
-[ext_resource type="Texture2D" uid="uid://d3mvkbkjmurdd" path="res://Objects/Characters/Perry/Perry.png" id="1_daafu"]
 [ext_resource type="Script" path="res://Scripts/Player Management/Player.gd" id="1_gh08y"]
+[ext_resource type="Texture2D" uid="uid://dgb4oysp2gw4l" path="res://Sprites/Animations/PTF_anim_perry.png" id="2_487w7"]
 [ext_resource type="AudioStream" uid="uid://b18ko5l6d7tgi" path="res://Audio/SFX/sfx_run.ogg" id="3_3lfpu"]
 [ext_resource type="AudioStream" uid="uid://dgfiwjm8e2p5m" path="res://Audio/SFX/sfx_walk.ogg" id="3_560xq"]
 [ext_resource type="AudioStream" uid="uid://cas1ohaiuqy8l" path="res://Audio/SFX/sfx_died.mp3" id="4_tri8g"]
@@ -308,7 +308,7 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_e7a40"]
-length = 0.4
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -331,7 +331,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 22, 22, 22]
+"values": [0, 23, 23, 23]
 }
 
 [sub_resource type="Animation" id="Animation_g2ell"]
@@ -642,14 +642,14 @@ states/Jump/position = Vector2(366, -36)
 states/Parry/node = SubResource("AnimationNodeBlendSpace2D_xwbay")
 states/Parry/position = Vector2(366, 234)
 states/Slide/node = SubResource("AnimationNodeBlendSpace2D_rvxly")
-states/Slide/position = Vector2(547, -36)
+states/Slide/position = Vector2(550, -36)
 states/Start/position = Vector2(216, 98)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_gaiub")
 states/Walk/position = Vector2(667, 98)
 states/Walling/node = SubResource("AnimationNodeBlendSpace2D_gnxi6")
 states/Walling/position = Vector2(719, -36)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_bgdlo"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_6j6p8"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_1g2x4"), "Idle", "Parry", SubResource("AnimationNodeStateMachineTransition_xbsqd"), "Parry", "Idle", SubResource("AnimationNodeStateMachineTransition_ljxw6"), "Walk", "Parry", SubResource("AnimationNodeStateMachineTransition_j65v3"), "Parry", "Walk", SubResource("AnimationNodeStateMachineTransition_7c8o6"), "Walk", "Slide", SubResource("AnimationNodeStateMachineTransition_rxhbe"), "Slide", "Walk", SubResource("AnimationNodeStateMachineTransition_qks4c"), "Slide", "Idle", SubResource("AnimationNodeStateMachineTransition_lcom4"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_0jnwx"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_jrag5"), "Slide", "Jump", SubResource("AnimationNodeStateMachineTransition_ii4k7"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_4m2p4"), "Jump", "Parry", SubResource("AnimationNodeStateMachineTransition_2ay5s"), "Jump", "Walk", SubResource("AnimationNodeStateMachineTransition_2pf7a"), "Parry", "Jump", SubResource("AnimationNodeStateMachineTransition_kbct5"), "Walk", "Walling", SubResource("AnimationNodeStateMachineTransition_m3xb4"), "Walling", "Walk", SubResource("AnimationNodeStateMachineTransition_sg88x")]
-graph_offset = Vector2(106, -82)
+graph_offset = Vector2(84, -71)
 
 [node name="Perry" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(2, 2)
@@ -660,10 +660,9 @@ script = ExtResource("1_gh08y")
 [node name="Sprite2D" type="Sprite2D" parent="Marker2D"]
 texture_filter = 1
 position = Vector2(0.555681, -2.08239)
-texture = ExtResource("1_daafu")
+texture = ExtResource("2_487w7")
 hframes = 6
 vframes = 5
-frame = 3
 region_rect = Rect2(8, 17, 13, 23)
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
@@ -675,9 +674,9 @@ metadata/_aseprite_wizard_config_ = {
 "only_visible": false,
 "player": "AnimationPlayer",
 "slice": "",
-"source": "C:/Users/CaptnJayce/Projects/Aseprite/ParryTheFloor/Anims/Perry.aseprite"
+"source": "res://Sprites/Animations/PTF_anim_perry.res"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "0e50f59e1c080d6683b56e458bc7e093"
+metadata/_aseprite_wizard_source_file_hash_ = "fd56c1e78e8bc1ce20cd44225a796dd4"
 
 [node name="PhysicsBox" type="CollisionShape2D" parent="."]
 position = Vector2(0.0781392, 2.9432)
