@@ -114,12 +114,25 @@ func _input(event : InputEvent):
 # ANIMATION STATE MACHINE
 func update_animation():
 	# Sets idle and walking anims
-	if velocity == Vector2.ZERO && is_on_floor() && !is_on_wall():
-		animation_tree["parameters/conditions/idle"] = true
-		animation_tree["parameters/conditions/is_moving"] = false
-	else:
-		animation_tree["parameters/conditions/idle"] = false
-		animation_tree["parameters/conditions/is_moving"] = true
+	if sprinting == false:
+		if velocity == Vector2.ZERO && is_on_floor() && !is_on_wall():
+			animation_tree["parameters/conditions/idle"] = true
+			animation_tree["parameters/conditions/is_moving"] = false
+			animation_tree["parameters/conditions/sprinting"] = false
+		elif velocity != Vector2.ZERO && is_on_floor() && !is_on_wall():
+			animation_tree["parameters/conditions/idle"] = false
+			animation_tree["parameters/conditions/sprinting"] = false
+			animation_tree["parameters/conditions/is_moving"] = true
+
+	if sprinting == true:
+		if velocity == Vector2.ZERO && is_on_floor() && !is_on_wall():
+			animation_tree["parameters/conditions/idle"] = true
+			animation_tree["parameters/conditions/is_moving"] = false
+			animation_tree["parameters/conditions/sprinting"] = false
+		elif velocity != Vector2.ZERO && is_on_floor() && !is_on_wall():
+			animation_tree["parameters/conditions/idle"] = false
+			animation_tree["parameters/conditions/is_moving"] = false
+			animation_tree["parameters/conditions/sprinting"] = true
 
 	# Sets parry anim
 	if Input.is_action_just_pressed("parry_d"):
@@ -128,17 +141,20 @@ func update_animation():
 		animation_tree["parameters/conditions/parry"] = false
 	
 	# Sets jumping anim
-	if Input.is_action_just_pressed("m_jump"):
+	if !is_on_floor():
 		animation_tree["parameters/conditions/jumping"] = true
+		animation_tree["parameters/conditions/is_moving"] = false
+		animation_tree["parameters/conditions/sprinting"] = false
 	else:
 		animation_tree["parameters/conditions/jumping"] = false
-	
+
+
 	# Sets sliding anim and movement bonuses
 	if Input.is_action_just_pressed("m_slide") && is_on_floor():
 		animation_tree["parameters/conditions/sliding"] = true
 		speed = speed + slide_speed
 		jump = jump + slide_jump
-		await get_tree().create_timer(0.4).timeout
+		await get_tree().create_timer(0.5).timeout
 		speed = speed - slide_speed
 		jump = jump - slide_jump
 	else:
@@ -149,7 +165,6 @@ func update_animation():
 			animation_tree["parameters/conditions/walling"] = true
 			marker2D.scale.x=-1
 			velocity.y = 100
-
 		if Input.is_action_pressed("m_left"):
 			animation_tree["parameters/conditions/walling"] = true
 			marker2D.scale.x=1
@@ -161,6 +176,7 @@ func update_animation():
 	animation_tree["parameters/Idle/blend_position"] = direction
 	animation_tree["parameters/Parry/blend_position"] = direction
 	animation_tree["parameters/Walk/blend_position"] = direction
+	animation_tree["parameters/Sprint/blend_position"] = direction
 	animation_tree["parameters/Slide/blend_position"] = direction
 	animation_tree["parameters/Jump/blend_position"] = direction
 	animation_tree["parameters/Walling/blend_position"] = direction
