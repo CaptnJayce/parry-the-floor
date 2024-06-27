@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyodc12paywsx"]
+
+[ext_resource type="Texture2D" uid="uid://dtyg5mrpjqmh2" path="res://Sprites/PTF_spike_normal_long.png" id="1_fd763"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxqal"]
+size = Vector2(27, 5)
+
+[node name="SpikeNormalLong" type="Node2D"]
+scale = Vector2(2, 2)
+
+[node name="SpikeArea" type="Area2D" parent="." groups=["Collide", "Kill"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeArea"]
+position = Vector2(-0.5, 3.5)
+shape = SubResource("RectangleShape2D_rxqal")
+debug_color = Color(0.996848, 0, 0.178503, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpikeArea"]
+texture = ExtResource("1_fd763")

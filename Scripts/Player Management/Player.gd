@@ -22,6 +22,7 @@ var sprint_speed = 300
 var slide_speed = 250
 var slide_jump = -50
 
+var can_slide = true
 var sprinting : bool
 var gravity = 980 # Gravity Intensity
 var direction : float
@@ -123,7 +124,6 @@ func update_animation():
 			animation_tree["parameters/conditions/idle"] = false
 			animation_tree["parameters/conditions/sprinting"] = false
 			animation_tree["parameters/conditions/is_moving"] = true
-
 	if sprinting == true:
 		if velocity == Vector2.ZERO && is_on_floor() && !is_on_wall():
 			animation_tree["parameters/conditions/idle"] = true
@@ -143,30 +143,35 @@ func update_animation():
 	# Sets jumping anim
 	if !is_on_floor():
 		animation_tree["parameters/conditions/jumping"] = true
+		animation_tree["parameters/conditions/walling"] = false
 		animation_tree["parameters/conditions/is_moving"] = false
 		animation_tree["parameters/conditions/sprinting"] = false
+		animation_tree["parameters/conditions/idle"] = false
 	else:
 		animation_tree["parameters/conditions/jumping"] = false
 
-
 	# Sets sliding anim and movement bonuses
-	if Input.is_action_just_pressed("m_slide") && is_on_floor():
+	if Input.is_action_just_pressed("m_slide") && is_on_floor() && can_slide == true:
+		can_slide = false
 		animation_tree["parameters/conditions/sliding"] = true
 		speed = speed + slide_speed
 		jump = jump + slide_jump
 		await get_tree().create_timer(0.5).timeout
 		speed = speed - slide_speed
 		jump = jump - slide_jump
+		cooldown()
 	else:
 		animation_tree["parameters/conditions/sliding"] = false
 
 	if is_on_wall() && !is_on_floor():
 		if Input.is_action_pressed("m_right"):
 			animation_tree["parameters/conditions/walling"] = true
+			animation_tree["parameters/conditions/jumping"] = false
 			marker2D.scale.x=-1
 			velocity.y = 100
 		if Input.is_action_pressed("m_left"):
 			animation_tree["parameters/conditions/walling"] = true
+			animation_tree["parameters/conditions/jumping"] = false
 			marker2D.scale.x=1
 			velocity.y = 100
 	else:
@@ -208,6 +213,10 @@ func _on_attack_box_area_entered(area):
 		else:
 			velocity.x = 0
 
+func cooldown():
+	can_slide = false
+	await get_tree().create_timer(2.0).timeout
+	can_slide = true
 # DAMAGE
 func _on_hurt_box_area_entered(area):
 	if area.is_in_group("Kill"):
@@ -216,6 +225,7 @@ func _on_hurt_box_area_entered(area):
 # DEATH
 func die():
 	death_sound.play()
+	velocity = Vector2.ZERO
 	Signals.death_counter = Signals.death_counter + 1
 	LevelData.damage_taken += 1
 	player.global_position = Signals.respawnpos_data
