@@ -18,6 +18,8 @@ var combo_3 = 125
 var speed = 125 # Player speed 
 var jump = -350 # Player jump height
 
+var dying = false
+
 var sprint_speed = 300
 var slide_speed = 250
 var slide_jump = -50
@@ -26,6 +28,8 @@ var can_slide = true
 var sprinting : bool
 var gravity = 980 # Gravity Intensity
 var direction : float
+
+var jump_timer : float
 
 # ANIMATION
 @onready var marker2D = $Marker2D
@@ -36,17 +40,19 @@ var direction : float
 @onready var death_sound = $DeathSFX
 @onready var walk_sound = $WalkSFX
 @onready var sprint_sound = $SprintSFX
+@onready var hit_sound_1 = $HitSFX
+@onready var hit_sound_2 = $Hit2SFX
 
 func _ready():
 	sprinting = false
 	animation = $AnimationPlayer
-
+	
+	Signals.connect("stairs", _stairs)
+	
 	if Signals.respawnpos_data == null:
 		pass
 	else:
 		player.global_position = Signals.respawnpos_data
-
-	print(player.global_position)
 
 func _process(_delta):
 	if player.is_on_floor():
@@ -96,8 +102,17 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	move_and_slide()
-	update_animation()
+	update_animation(delta)
 
+func _stairs():
+	var up = Signals.next_point - player.global_position.y
+	player.global_position.y = player.global_position.y - up - 5
+	
+	if previous_direction == "left":
+		player.global_position.x = player.global_position.x - 5
+	if previous_direction == "right":
+		player.global_position.x = player.global_position.x + 5
+	
 func _input(event : InputEvent):
 	if(event.is_action_pressed("m_down") && is_on_floor()):
 		position.y += 1
@@ -108,12 +123,14 @@ func _input(event : InputEvent):
 	if $AnimationPlayer.is_playing() && $AnimationPlayer.current_animation == "Parry_F" || $AnimationPlayer.current_animation == "Parry_D" || $AnimationPlayer.current_animation == "Jump" && !is_on_floor() || $AnimationPlayer.current_animation == "Slide" || $AnimationPlayer.current_animation == "Wall_Slide":
 		pass
 	elif Input.is_action_pressed("m_right"):
+		previous_direction = "right"
 		marker2D.scale.x=1
 	elif Input.is_action_pressed("m_left"):
+		previous_direction = "left"
 		marker2D.scale.x=-1
 	
 # ANIMATION STATE MACHINE
-func update_animation():
+func update_animation(delta):
 	# Sets idle and walking anims
 	if sprinting == false:
 		if velocity == Vector2.ZERO && is_on_floor() && !is_on_wall():
@@ -142,11 +159,14 @@ func update_animation():
 	
 	# Sets jumping anim
 	if !is_on_floor():
-		animation_tree["parameters/conditions/jumping"] = true
-		animation_tree["parameters/conditions/walling"] = false
-		animation_tree["parameters/conditions/is_moving"] = false
-		animation_tree["parameters/conditions/sprinting"] = false
-		animation_tree["parameters/conditions/idle"] = false
+		jump_timer += delta
+		if jump_timer > 0.3:
+			animation_tree["parameters/conditions/jumping"] = true
+			animation_tree["parameters/conditions/walling"] = false
+			animation_tree["parameters/conditions/is_moving"] = false
+			animation_tree["parameters/conditions/sprinting"] = false
+			animation_tree["parameters/conditions/idle"] = false
+			jump_timer = 0
 	else:
 		animation_tree["parameters/conditions/jumping"] = false
 
@@ -189,6 +209,12 @@ func update_animation():
 # PARRY
 func _on_attack_box_area_entered(area):
 	if area.is_in_group("Collide") || is_on_wall() && !is_on_floor():
+
+		if randi_range(1,2) == 1:
+			hit_sound_1.play()
+		else:
+			hit_sound_2.play()
+
 		combo_count += 1
 		print(combo_count)
 		
@@ -217,6 +243,7 @@ func cooldown():
 	can_slide = false
 	await get_tree().create_timer(2.0).timeout
 	can_slide = true
+
 # DAMAGE
 func _on_hurt_box_area_entered(area):
 	if area.is_in_group("Kill"):
@@ -229,4 +256,12 @@ func die():
 	Signals.death_counter = Signals.death_counter + 1
 	LevelData.damage_taken += 1
 	player.global_position = Signals.respawnpos_data
-
+	
+func anim_reset():
+	animation_tree["parameters/conditions/idle"] = true
+	animation_tree["parameters/conditions/is_moving"] = false
+	animation_tree["parameters/conditions/sprinting"] = false
+	animation_tree["parameters/conditions/walling"] = false
+	animation_tree["parameters/conditions/jumping"] = false
+	animation_tree["parameters/conditions/sliding"] = false
+	animation_tree["parameters/conditions/parry"] = false

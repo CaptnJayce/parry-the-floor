@@ -11,6 +11,9 @@ signal mute
 signal petal_picked
 signal gold_lotus
 
+signal stairs
+var next_point
+
 var previous_level
 
 var music_volume
