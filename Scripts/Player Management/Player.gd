@@ -6,11 +6,12 @@ class_name Player
 # PARRY RELATED VARIABLES
 var previous_direction # Used in _process to store the previous parry direction
 var parry_dist = 450 # The vertical distance traveled when parrying
-var parry_dist_reset = 450
-var combo_count : int
+var parry_dist_reset = 450 # Used for resetting to original value
+var combo_count : int # Tracks successive parry hits
 
 # COMBO RELATED VARIABLES
-var combo_1 = 50
+# Adds extra parry height based on the combo
+var combo_1 = 50 
 var combo_2 = 80
 var combo_3 = 125
 
@@ -18,18 +19,16 @@ var combo_3 = 125
 var speed = 125 # Player speed 
 var jump = -350 # Player jump height
 
-var dying = false
+var sprint_speed = 300 # Player speed when sprinting
+var slide_speed = 250 # Speed when sliding
+var slide_jump = -50 # Additional jump during slide
 
-var sprint_speed = 300
-var slide_speed = 250
-var slide_jump = -50
-
-var can_slide = true
-var sprinting : bool
+var can_slide = true # Used for slide cooldown
+var sprinting : bool # Used to regulate some animations and SFX
 var gravity = 980 # Gravity Intensity
 var direction : float
 
-var jump_timer : float
+var jump_timer : float # Time before playing jump animation 
 
 # ANIMATION
 @onready var marker2D = $Marker2D
@@ -55,10 +54,12 @@ func _ready():
 		player.global_position = Signals.respawnpos_data
 
 func _process(_delta):
+	# Resets combo to 0 if player lands on floor
 	if player.is_on_floor():
 		combo_count = 0
 		parry_dist = parry_dist_reset
-		
+	
+	# Sets 'sprinting' to true or false and manages speed 
 	if Input.is_action_just_pressed("sprint"):
 		if sprinting == false:
 			sprinting = true
@@ -69,22 +70,26 @@ func _process(_delta):
 
 func _physics_process(delta):
 	direction = Input.get_axis("m_left", "m_right")
-
+	
 	# JUMP
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	if Input.is_action_pressed("m_jump") and is_on_floor():
 		velocity.y = jump
 	
+	# Walking and Running SFX handling
+	# Could be optimised
+	# Stops SFX when not moving
 	if !is_on_floor() && walk_sound.playing || !is_on_floor() && sprint_sound.playing:
 		walk_sound.stop()
 		sprint_sound.stop()
-	
+	# Stops one SFX when the other is playing
 	if velocity == Vector2.ZERO && walk_sound.playing:
 		walk_sound.stop()
 	if velocity == Vector2.ZERO && sprint_sound.playing:
 		sprint_sound.stop()
 	
+	# Plays running or walking SFX when moving
 	if Input.is_action_pressed("m_right") && !walk_sound.playing || Input.is_action_pressed("m_left") && !walk_sound.playing:
 		if sprinting == false && !is_on_wall() && is_on_floor():
 			walk_sound.play()
@@ -104,6 +109,7 @@ func _physics_process(delta):
 	move_and_slide()
 	update_animation(delta)
 
+# Logic for moving player up tiles
 func _stairs():
 	var up = Signals.next_point - player.global_position.y
 	player.global_position.y = player.global_position.y - up - 5
@@ -113,6 +119,7 @@ func _stairs():
 	if previous_direction == "right":
 		player.global_position.x = player.global_position.x + 5
 	
+# Input handling
 func _input(event : InputEvent):
 	if(event.is_action_pressed("m_down") && is_on_floor()):
 		position.y += 1
@@ -130,6 +137,7 @@ func _input(event : InputEvent):
 		marker2D.scale.x=-1
 	
 # ANIMATION STATE MACHINE
+# This is a major clusterfuck and could very easily be optimised but I cba
 func update_animation(delta):
 	# Sets idle and walking anims
 	if sprinting == false:
@@ -209,36 +217,36 @@ func update_animation(delta):
 # PARRY
 func _on_attack_box_area_entered(area):
 	if area.is_in_group("Collide") || is_on_wall() && !is_on_floor():
-
+		
+		# Randomises which hit SFX is played
 		if randi_range(1,2) == 1:
 			hit_sound_1.play()
 		else:
 			hit_sound_2.play()
-
+			
+		# Tracks combo number to add additional height to successive parries
+		# Resets when landing
 		combo_count += 1
-		print(combo_count)
-		
 		if combo_count == 1:
 			parry_dist = parry_dist_reset
 			parry_dist = parry_dist + combo_1
-		
 		if combo_count == 2: 
 			parry_dist = parry_dist_reset
 			parry_dist = parry_dist + combo_2
-			
 		if combo_count == 3:
 			parry_dist = parry_dist_reset
 			parry_dist = parry_dist + combo_3
-		
 		if combo_count > 3:
 			parry_dist = parry_dist_reset
-			combo_count = 1
-
+			combo_count = 1 # Loops back to 1 so player doesn't have to land to reset combo
+		
+		# I forgot what this does
 		if previous_direction == "down":
 			velocity.y = -parry_dist
 		else:
 			velocity.x = 0
 
+# SLIDE COOLDOWN
 func cooldown():
 	can_slide = false
 	await get_tree().create_timer(2.0).timeout
