@@ -8,6 +8,7 @@ var previous_direction # Used in _process to store the previous parry direction
 var parry_dist = 450 # The vertical distance traveled when parrying
 var parry_dist_reset = 450 # Used for resetting to original value
 var combo_count : int # Tracks successive parry hits
+var can_parry = true
 
 # COMBO RELATED VARIABLES
 var combo_1 = 50 
@@ -184,19 +185,19 @@ func update_animation(delta):
 	else:
 		animation_tree["parameters/conditions/sliding"] = false
 
-	if is_on_wall() && !is_on_floor():
-		if Input.is_action_pressed("m_right"):
-			animation_tree["parameters/conditions/walling"] = true
-			animation_tree["parameters/conditions/jumping"] = false
-			marker2D.scale.x=-1
-			velocity.y = 100
-		if Input.is_action_pressed("m_left"):
-			animation_tree["parameters/conditions/walling"] = true
-			animation_tree["parameters/conditions/jumping"] = false
-			marker2D.scale.x=1
-			velocity.y = 100
-	else:
-		animation_tree["parameters/conditions/walling"] = false
+#	if is_on_wall() && !is_on_floor():
+#		if Input.is_action_pressed("m_right"):
+#			animation_tree["parameters/conditions/walling"] = true
+#			animation_tree["parameters/conditions/jumping"] = false
+#			marker2D.scale.x=-1
+#			velocity.y = 100
+#		if Input.is_action_pressed("m_left"):
+#			animation_tree["parameters/conditions/walling"] = true
+#			animation_tree["parameters/conditions/jumping"] = false
+#			marker2D.scale.x=1
+#			velocity.y = 100
+#	else:
+#		animation_tree["parameters/conditions/walling"] = false
 
 	# I don't actually know what this does it was just in the tut
 	animation_tree["parameters/Idle/blend_position"] = direction
@@ -205,12 +206,12 @@ func update_animation(delta):
 	animation_tree["parameters/Sprint/blend_position"] = direction
 	animation_tree["parameters/Slide/blend_position"] = direction
 	animation_tree["parameters/Jump/blend_position"] = direction
-	animation_tree["parameters/Walling/blend_position"] = direction
+	#animation_tree["parameters/Walling/blend_position"] = direction
 
 # PARRY
 func _on_attack_box_area_entered(area):
-	if area.is_in_group("Collide") || is_on_wall() && !is_on_floor():
-		
+	if area.is_in_group("Collide") && can_parry == true || is_on_wall() && !is_on_floor() && can_parry == true:
+		can_parry = false
 		# Randomises which hit SFX is played
 		if randi_range(1,2) == 1:
 			hit_sound_1.play()
@@ -238,6 +239,8 @@ func _on_attack_box_area_entered(area):
 			velocity.y = -parry_dist
 		else:
 			velocity.x = 0
+		await get_tree().create_timer(0.3).timeout
+		can_parry = true
 
 # SLIDE COOLDOWN
 func cooldown():
@@ -262,11 +265,10 @@ func anim_reset():
 	animation_tree["parameters/conditions/idle"] = true
 	animation_tree["parameters/conditions/is_moving"] = false
 	animation_tree["parameters/conditions/sprinting"] = false
-	animation_tree["parameters/conditions/walling"] = false
+	#animation_tree["parameters/conditions/walling"] = false
 	animation_tree["parameters/conditions/jumping"] = false
 	animation_tree["parameters/conditions/sliding"] = false
 	animation_tree["parameters/conditions/parry"] = false
-
 
 func _on_elevation_area_area_entered(area):
 	if area.is_in_group("Stairs"):

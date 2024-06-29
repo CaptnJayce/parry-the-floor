@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://bnrp0m4nxey3m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xut4h"]
-size = Vector2(15.9986, 6.02614)
+size = Vector2(15.9986, 1.55008)
 
 [node name="Stairs" type="Node2D"]
 
 [node name="Area2D" type="Area2D" parent="." groups=["Stairs"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(8.0344, 3.04168)
+position = Vector2(8.0344, 5.27971)
 shape = SubResource("RectangleShape2D_xut4h")
