@@ -10,7 +10,6 @@ var parry_dist_reset = 450 # Used for resetting to original value
 var combo_count : int # Tracks successive parry hits
 
 # COMBO RELATED VARIABLES
-# Adds extra parry height based on the combo
 var combo_1 = 50 
 var combo_2 = 80
 var combo_3 = 125
@@ -18,6 +17,7 @@ var combo_3 = 125
 # MOVEMENT RELATED VARIABLES
 var speed = 125 # Player speed 
 var jump = -350 # Player jump height
+var forwards = true
 
 var sprint_speed = 300 # Player speed when sprinting
 var slide_speed = 250 # Speed when sliding
@@ -42,11 +42,12 @@ var jump_timer : float # Time before playing jump animation
 @onready var hit_sound_1 = $HitSFX
 @onready var hit_sound_2 = $Hit2SFX
 
+# OTHER
+@onready var elevation = $ElevationArea/ElevationShape
+
 func _ready():
 	sprinting = false
 	animation = $AnimationPlayer
-	
-	Signals.connect("stairs", _stairs)
 	
 	if Signals.respawnpos_data == null:
 		pass
@@ -54,7 +55,7 @@ func _ready():
 		player.global_position = Signals.respawnpos_data
 
 func _process(_delta):
-	# Resets combo to 0 if player lands on floor
+		# Resets combo to 0 if player lands on floor
 	if player.is_on_floor():
 		combo_count = 0
 		parry_dist = parry_dist_reset
@@ -62,9 +63,11 @@ func _process(_delta):
 	# Sets 'sprinting' to true or false and manages speed 
 	if Input.is_action_just_pressed("sprint"):
 		if sprinting == false:
+			elevation.scale.x = 4
 			sprinting = true
 			speed = sprint_speed
 		else:
+			elevation.scale.x = 2
 			sprinting = false
 			speed = 125
 
@@ -109,16 +112,6 @@ func _physics_process(delta):
 	move_and_slide()
 	update_animation(delta)
 
-# Logic for moving player up tiles
-func _stairs():
-	var up = Signals.next_point - player.global_position.y
-	player.global_position.y = player.global_position.y - up - 5
-	
-	if previous_direction == "left":
-		player.global_position.x = player.global_position.x - 5
-	if previous_direction == "right":
-		player.global_position.x = player.global_position.x + 5
-	
 # Input handling
 func _input(event : InputEvent):
 	if(event.is_action_pressed("m_down") && is_on_floor()):
@@ -130,10 +123,10 @@ func _input(event : InputEvent):
 	if $AnimationPlayer.is_playing() && $AnimationPlayer.current_animation == "Parry_F" || $AnimationPlayer.current_animation == "Parry_D" || $AnimationPlayer.current_animation == "Jump" && !is_on_floor() || $AnimationPlayer.current_animation == "Slide" || $AnimationPlayer.current_animation == "Wall_Slide":
 		pass
 	elif Input.is_action_pressed("m_right"):
-		previous_direction = "right"
+		forwards = true
 		marker2D.scale.x=1
 	elif Input.is_action_pressed("m_left"):
-		previous_direction = "left"
+		forwards = false
 		marker2D.scale.x=-1
 	
 # ANIMATION STATE MACHINE
@@ -273,3 +266,8 @@ func anim_reset():
 	animation_tree["parameters/conditions/jumping"] = false
 	animation_tree["parameters/conditions/sliding"] = false
 	animation_tree["parameters/conditions/parry"] = false
+
+
+func _on_elevation_area_area_entered(area):
+	if area.is_in_group("Stairs"):
+		player.global_position.y = player.global_position.y - 20

@@ -8,11 +8,11 @@
 [ext_resource type="AudioStream" uid="uid://b4vpha82rjye4" path="res://Audio/SFX/sfx_hit1.wav" id="6_4o5us"]
 [ext_resource type="AudioStream" uid="uid://d25cv4085cnr8" path="res://Audio/SFX/sfx_hit2.wav" id="7_e6fmj"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1eae"]
+size = Vector2(5.53184, 1.98661)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cejif"]
 size = Vector2(4.88593, 20.9647)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1eae"]
-size = Vector2(3.41223, 1.85259)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mctnp"]
 radius = 14.0657
@@ -868,7 +868,7 @@ texture_filter = 1
 texture = ExtResource("2_jdgmd")
 hframes = 6
 vframes = 6
-frame = 1
+frame = 2
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -883,16 +883,19 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "56e9e3622ed188d310a5cb5f907e09a7"
 
+[node name="ElevationArea" type="Area2D" parent="." groups=["Player"]]
+
+[node name="ElevationShape" type="CollisionShape2D" parent="ElevationArea"]
+position = Vector2(0.523693, 14.0157)
+scale = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_i1eae")
+one_way_collision_margin = 0.0
+debug_color = Color(3.80233e-06, 0.649056, 0.158942, 0.42)
+
 [node name="PhysicsBox" type="CollisionShape2D" parent="."]
 position = Vector2(0.57413, 4.54484)
 scale = Vector2(1.004, 1)
 shape = SubResource("RectangleShape2D_cejif")
-
-[node name="ElevationBox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ElevationBox"]
-position = Vector2(2.71576, 13.9487)
-shape = SubResource("RectangleShape2D_i1eae")
 
 [node name="AttackBox" type="Area2D" parent="."]
 
@@ -973,6 +976,6 @@ stream = ExtResource("6_4o5us")
 [node name="Hit2SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_e6fmj")
 
-[connection signal="area_entered" from="ElevationBox" to="." method="_on_elevation_box_area_entered"]
+[connection signal="area_entered" from="ElevationArea" to="." method="_on_elevation_area_area_entered"]
 [connection signal="area_entered" from="AttackBox" to="." method="_on_attack_box_area_entered"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
