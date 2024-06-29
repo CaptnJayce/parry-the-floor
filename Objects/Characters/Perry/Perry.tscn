@@ -111,8 +111,7 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_bysv2"]
-length = 1.5
-loop_mode = 1
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -168,15 +167,14 @@ tracks/4/path = NodePath("Marker2D/Sprite2D:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = false
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21]
+"values": [21, 21, 21, 21, 21, 21]
 }
 
 [sub_resource type="Animation" id="Animation_r0xbj"]
 length = 0.3
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -371,7 +369,6 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_1pllk"]
 length = 0.3
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1010,7 +1007,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "C:/Users/CaptnJayce/Projects/art/Aseprite/ParryTheFloor/PTF_anim_perry.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "b8859310151e2dbb9b75d3c81160df5b"
+metadata/_aseprite_wizard_source_file_hash_ = "de23e02eca25b9b016e35d31ab930719"
 
 [node name="ElevationArea" type="Area2D" parent="." groups=["Player"]]
 
