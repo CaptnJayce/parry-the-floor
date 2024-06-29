@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://tacb7ydmc5ot"]
+[gd_scene load_steps=86 format=3 uid="uid://tacb7ydmc5ot"]
 
 [ext_resource type="Script" path="res://Scripts/Player Management/Player.gd" id="1_gh08y"]
 [ext_resource type="Texture2D" uid="uid://wjoymcw0xcv5" path="res://Objects/Characters/Perry/PTF_anim_perry.png" id="2_jdgmd"]
@@ -12,7 +12,7 @@
 size = Vector2(5.53184, 1.98661)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cejif"]
-size = Vector2(4.88593, 21.868)
+size = Vector2(5.94097, 21.868)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghsph"]
 size = Vector2(16.9462, 6.97437)
@@ -451,7 +451,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 22, 23]
+"values": [0, 23, 23]
 }
 
 [sub_resource type="Animation" id="Animation_gcyt1"]
@@ -797,30 +797,6 @@ min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gvka8"]
-animation = &"Wall_Slide"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i8xql"]
-animation = &"Wall_Slide"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lbbxc"]
-animation = &"Wall_Slide"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_itcoi"]
-animation = &"Wall_Slide"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_gnxi6"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_gvka8")
-blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_i8xql")
-blend_point_1/pos = Vector2(0, 1.1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_lbbxc")
-blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_itcoi")
-blend_point_3/pos = Vector2(0, -1.1)
-min_space = Vector2(-1, -1.1)
-max_space = Vector2(1, 1.1)
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bgdlo"]
 advance_mode = 2
 
@@ -935,34 +911,6 @@ advance_condition = &"idle"
 advance_mode = 2
 advance_condition = &"sprinting"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h7v07"]
-advance_mode = 2
-advance_condition = &"walling"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yu8me"]
-advance_mode = 2
-advance_condition = &"sprinting"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sg88x"]
-advance_mode = 2
-advance_condition = &"is_moving"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m3xb4"]
-advance_mode = 2
-advance_condition = &"walling"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jmsvd"]
-advance_mode = 2
-advance_condition = &"walling"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8dswu"]
-advance_mode = 2
-advance_condition = &"jumping"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bmfro"]
-advance_mode = 2
-advance_condition = &"idle"
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oa8c3"]
 states/End/position = Vector2(186, 297)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_om6lk")
@@ -978,10 +926,8 @@ states/Sprint/position = Vector2(933, -150)
 states/Start/position = Vector2(152, 98)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_gaiub")
 states/Walk/position = Vector2(933, 343)
-states/Walling/node = SubResource("AnimationNodeBlendSpace2D_gnxi6")
-states/Walling/position = Vector2(476, -414)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_bgdlo"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_6j6p8"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_1g2x4"), "Idle", "Parry", SubResource("AnimationNodeStateMachineTransition_xbsqd"), "Parry", "Idle", SubResource("AnimationNodeStateMachineTransition_ljxw6"), "Walk", "Parry", SubResource("AnimationNodeStateMachineTransition_j65v3"), "Parry", "Walk", SubResource("AnimationNodeStateMachineTransition_7c8o6"), "Walk", "Slide", SubResource("AnimationNodeStateMachineTransition_rxhbe"), "Slide", "Walk", SubResource("AnimationNodeStateMachineTransition_qks4c"), "Slide", "Idle", SubResource("AnimationNodeStateMachineTransition_lcom4"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_0jnwx"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_jrag5"), "Slide", "Jump", SubResource("AnimationNodeStateMachineTransition_ii4k7"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_4m2p4"), "Jump", "Parry", SubResource("AnimationNodeStateMachineTransition_2ay5s"), "Jump", "Walk", SubResource("AnimationNodeStateMachineTransition_2pf7a"), "Parry", "Jump", SubResource("AnimationNodeStateMachineTransition_kbct5"), "Walk", "Sprint", SubResource("AnimationNodeStateMachineTransition_b7lgk"), "Sprint", "Walk", SubResource("AnimationNodeStateMachineTransition_cxg37"), "Sprint", "Parry", SubResource("AnimationNodeStateMachineTransition_y1qsw"), "Parry", "Sprint", SubResource("AnimationNodeStateMachineTransition_5tebw"), "Sprint", "Slide", SubResource("AnimationNodeStateMachineTransition_l56ne"), "Slide", "Sprint", SubResource("AnimationNodeStateMachineTransition_6f3ut"), "Sprint", "Jump", SubResource("AnimationNodeStateMachineTransition_7xmu0"), "Jump", "Sprint", SubResource("AnimationNodeStateMachineTransition_7mscy"), "Sprint", "Idle", SubResource("AnimationNodeStateMachineTransition_x6fwy"), "Idle", "Sprint", SubResource("AnimationNodeStateMachineTransition_m5o6y"), "Sprint", "Walling", SubResource("AnimationNodeStateMachineTransition_h7v07"), "Walling", "Sprint", SubResource("AnimationNodeStateMachineTransition_yu8me"), "Walling", "Walk", SubResource("AnimationNodeStateMachineTransition_sg88x"), "Walk", "Walling", SubResource("AnimationNodeStateMachineTransition_m3xb4"), "Jump", "Walling", SubResource("AnimationNodeStateMachineTransition_jmsvd"), "Walling", "Jump", SubResource("AnimationNodeStateMachineTransition_8dswu"), "Walling", "Idle", SubResource("AnimationNodeStateMachineTransition_bmfro")]
-graph_offset = Vector2(10, 91)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_bgdlo"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_6j6p8"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_1g2x4"), "Idle", "Parry", SubResource("AnimationNodeStateMachineTransition_xbsqd"), "Parry", "Idle", SubResource("AnimationNodeStateMachineTransition_ljxw6"), "Walk", "Parry", SubResource("AnimationNodeStateMachineTransition_j65v3"), "Parry", "Walk", SubResource("AnimationNodeStateMachineTransition_7c8o6"), "Walk", "Slide", SubResource("AnimationNodeStateMachineTransition_rxhbe"), "Slide", "Walk", SubResource("AnimationNodeStateMachineTransition_qks4c"), "Slide", "Idle", SubResource("AnimationNodeStateMachineTransition_lcom4"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_0jnwx"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_jrag5"), "Slide", "Jump", SubResource("AnimationNodeStateMachineTransition_ii4k7"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_4m2p4"), "Jump", "Parry", SubResource("AnimationNodeStateMachineTransition_2ay5s"), "Jump", "Walk", SubResource("AnimationNodeStateMachineTransition_2pf7a"), "Parry", "Jump", SubResource("AnimationNodeStateMachineTransition_kbct5"), "Walk", "Sprint", SubResource("AnimationNodeStateMachineTransition_b7lgk"), "Sprint", "Walk", SubResource("AnimationNodeStateMachineTransition_cxg37"), "Sprint", "Parry", SubResource("AnimationNodeStateMachineTransition_y1qsw"), "Parry", "Sprint", SubResource("AnimationNodeStateMachineTransition_5tebw"), "Sprint", "Slide", SubResource("AnimationNodeStateMachineTransition_l56ne"), "Slide", "Sprint", SubResource("AnimationNodeStateMachineTransition_6f3ut"), "Sprint", "Jump", SubResource("AnimationNodeStateMachineTransition_7xmu0"), "Jump", "Sprint", SubResource("AnimationNodeStateMachineTransition_7mscy"), "Sprint", "Idle", SubResource("AnimationNodeStateMachineTransition_x6fwy"), "Idle", "Sprint", SubResource("AnimationNodeStateMachineTransition_m5o6y")]
+graph_offset = Vector2(144, -104)
 
 [node name="Perry" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(2, 2)
@@ -994,7 +940,6 @@ texture_filter = 1
 texture = ExtResource("2_jdgmd")
 hframes = 6
 vframes = 6
-frame = 2
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -1019,7 +964,7 @@ one_way_collision_margin = 0.0
 debug_color = Color(3.80233e-06, 0.649056, 0.158942, 0.42)
 
 [node name="PhysicsBox" type="CollisionShape2D" parent="."]
-position = Vector2(0.57413, 4.0932)
+position = Vector2(0.0444984, 4.0932)
 scale = Vector2(1.004, 1)
 shape = SubResource("RectangleShape2D_cejif")
 
@@ -1082,14 +1027,12 @@ parameters/conditions/jumping = false
 parameters/conditions/parry = false
 parameters/conditions/sliding = false
 parameters/conditions/sprinting = false
-parameters/conditions/walling = false
 parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Jump/blend_position = Vector2(0, 0)
 parameters/Parry/blend_position = Vector2(-0.00265253, -0.00385964)
 parameters/Slide/blend_position = Vector2(0, 0)
 parameters/Sprint/blend_position = Vector2(0, 0)
 parameters/Walk/blend_position = Vector2(0, 0)
-parameters/Walling/blend_position = Vector2(-0.000884175, -0.00484574)
 
 [node name="SprintSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_3lfpu")

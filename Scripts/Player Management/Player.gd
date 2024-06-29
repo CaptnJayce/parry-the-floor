@@ -44,7 +44,7 @@ var jump_timer : float # Time before playing jump animation
 @onready var hit_sound_2 = $Hit2SFX
 
 # OTHER
-@onready var elevation = $ElevationArea/ElevationShape
+#@onready var elevation = $ElevationArea/ElevationShape
 
 func _ready():
 	sprinting = false
@@ -64,11 +64,9 @@ func _process(_delta):
 	# Sets 'sprinting' to true or false and manages speed 
 	if Input.is_action_just_pressed("sprint"):
 		if sprinting == false:
-			elevation.scale.x = 4
 			sprinting = true
 			speed = sprint_speed
 		else:
-			elevation.scale.x = 2
 			sprinting = false
 			speed = 125
 
@@ -162,9 +160,9 @@ func update_animation(delta):
 	# Sets jumping anim
 	if !is_on_floor():
 		jump_timer += delta
-		if jump_timer > 0.3:
+		if jump_timer > 0.4:
 			animation_tree["parameters/conditions/jumping"] = true
-			animation_tree["parameters/conditions/walling"] = false
+			#animation_tree["parameters/conditions/walling"] = false
 			animation_tree["parameters/conditions/is_moving"] = false
 			animation_tree["parameters/conditions/sprinting"] = false
 			animation_tree["parameters/conditions/idle"] = false
