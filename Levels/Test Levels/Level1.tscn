@@ -328,13 +328,9 @@ script = ExtResource("9_041cw")
 [node name="Cam" type="Camera2D" parent="TileMap/Node2D/Anchor"]
 scale = Vector2(2, 2)
 
-[node name="OutOfBounds" parent="." instance=ExtResource("7_sveax")]
-position = Vector2(-507, 4277)
+[node name="Button Tutorials" type="Node2D" parent="."]
 
-[node name="RespawnFlag" parent="." instance=ExtResource("10_u6o02")]
-position = Vector2(80, 160)
-
-[node name="tutorial1" type="Sprite2D" parent="."]
+[node name="tutorial1" type="Sprite2D" parent="Button Tutorials"]
 modulate = Color(1, 1, 1, 0.313726)
 position = Vector2(118, 135)
 scale = Vector2(2, 2)
@@ -345,7 +341,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": false
 }
 
-[node name="tutorial2" type="Sprite2D" parent="."]
+[node name="tutorial2" type="Sprite2D" parent="Button Tutorials"]
 modulate = Color(1, 1, 1, 0.313726)
 position = Vector2(368.765, 144)
 scale = Vector2(2, 2)
@@ -356,7 +352,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": false
 }
 
-[node name="tutorial3" type="Sprite2D" parent="."]
+[node name="tutorial3" type="Sprite2D" parent="Button Tutorials"]
 modulate = Color(1, 1, 1, 0.313726)
 position = Vector2(1029, 157)
 scale = Vector2(2, 2)
@@ -367,7 +363,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": false
 }
 
-[node name="tutorial4" type="Sprite2D" parent="."]
+[node name="tutorial4" type="Sprite2D" parent="Button Tutorials"]
 modulate = Color(1, 1, 1, 0.313726)
 position = Vector2(1488, 200)
 scale = Vector2(2, 2)
@@ -378,7 +374,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": false
 }
 
-[node name="tutorial5" type="Sprite2D" parent="."]
+[node name="tutorial5" type="Sprite2D" parent="Button Tutorials"]
 modulate = Color(1, 1, 1, 0.313726)
 position = Vector2(2442, -529)
 scale = Vector2(2, 2)
@@ -389,7 +385,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": false
 }
 
-[node name="tutorial6" type="Sprite2D" parent="."]
+[node name="tutorial6" type="Sprite2D" parent="Button Tutorials"]
 modulate = Color(1, 1, 1, 0.313726)
 position = Vector2(2495, -536)
 scale = Vector2(2, 2)
@@ -400,7 +396,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": false
 }
 
-[node name="tutorial7" type="Sprite2D" parent="."]
+[node name="tutorial7" type="Sprite2D" parent="Button Tutorials"]
 modulate = Color(1, 1, 1, 0.313726)
 position = Vector2(2550, -530)
 scale = Vector2(2, 2)
@@ -411,7 +407,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": false
 }
 
-[node name="tutorial8" type="Sprite2D" parent="."]
+[node name="tutorial8" type="Sprite2D" parent="Button Tutorials"]
 modulate = Color(1, 1, 1, 0.313726)
 position = Vector2(2548, -535)
 scale = Vector2(0.9, 0.9)
@@ -422,110 +418,122 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": false
 }
 
-[node name="SpikeNormalLong" parent="." instance=ExtResource("15_ext7g")]
+[node name="Traps" type="Node2D" parent="."]
+
+[node name="SpikeNormalLong" parent="Traps" instance=ExtResource("15_ext7g")]
 position = Vector2(958, 240)
 
-[node name="SpikeNormalLong2" parent="." instance=ExtResource("15_ext7g")]
+[node name="SpikeNormalLong2" parent="Traps" instance=ExtResource("15_ext7g")]
 position = Vector2(1108, 240)
 
-[node name="SpikeNormalLong3" parent="." instance=ExtResource("15_ext7g")]
+[node name="SpikeNormalLong3" parent="Traps" instance=ExtResource("15_ext7g")]
 position = Vector2(1440, 288)
 
-[node name="SpikeNormalLong7" parent="." instance=ExtResource("15_ext7g")]
+[node name="SpikeNormalLong7" parent="Traps" instance=ExtResource("15_ext7g")]
 position = Vector2(1538, 288)
 
-[node name="SpikeNormalLong8" parent="." instance=ExtResource("16_jxvpb")]
+[node name="SpikeNormalLong8" parent="Traps" instance=ExtResource("16_jxvpb")]
 position = Vector2(1489, 288)
 
-[node name="SpikeNormalLong9" parent="." instance=ExtResource("16_jxvpb")]
+[node name="SpikeNormalLong9" parent="Traps" instance=ExtResource("16_jxvpb")]
 position = Vector2(1392, 272)
 
-[node name="SpikeNormalLong10" parent="." instance=ExtResource("16_jxvpb")]
+[node name="SpikeNormalLong10" parent="Traps" instance=ExtResource("16_jxvpb")]
 position = Vector2(1586, 272)
 
-[node name="Stairs" parent="." instance=ExtResource("15_08rxy")]
-position = Vector2(691, 218)
-
-[node name="Stairs2" parent="." instance=ExtResource("15_08rxy")]
-position = Vector2(740, 234)
-
-[node name="Stairs3" parent="." instance=ExtResource("15_08rxy")]
-position = Vector2(788, 250)
-
-[node name="Stairs4" parent="." instance=ExtResource("15_08rxy")]
-position = Vector2(1315, 266)
-
-[node name="Stairs5" parent="." instance=ExtResource("15_08rxy")]
-position = Vector2(1645, 266)
-
-[node name="Stairs6" parent="." instance=ExtResource("15_08rxy")]
-position = Vector2(1773, 250)
-
-[node name="Stairs7" parent="." instance=ExtResource("15_08rxy")]
-position = Vector2(1901, 234)
-
-[node name="Stairs8" parent="." instance=ExtResource("15_08rxy")]
-position = Vector2(1934, 218)
-
-[node name="Stairs9" parent="." instance=ExtResource("15_08rxy")]
-position = Vector2(2078, 202)
-
-[node name="Stairs10" parent="." instance=ExtResource("15_08rxy")]
-position = Vector2(2141, 186)
-
-[node name="Stairs11" parent="." instance=ExtResource("15_08rxy")]
-position = Vector2(2173, 170)
-
-[node name="Stairs12" parent="." instance=ExtResource("15_08rxy")]
-position = Vector2(2221, 154)
-
-[node name="Stairs13" parent="." instance=ExtResource("15_08rxy")]
-position = Vector2(2237, 138)
-
-[node name="SpikeNormalLong4" parent="." instance=ExtResource("15_ext7g")]
+[node name="SpikeNormalLong4" parent="Traps" instance=ExtResource("15_ext7g")]
 position = Vector2(2354, 96)
 
-[node name="Stairs14" parent="." instance=ExtResource("15_08rxy")]
-position = Vector2(2253, 122)
-
-[node name="SpikeNormalLong5" parent="." instance=ExtResource("16_jxvpb")]
+[node name="SpikeNormalLong5" parent="Traps" instance=ExtResource("16_jxvpb")]
 position = Vector2(2402, 16)
 
-[node name="SpikeNormalLong6" parent="." instance=ExtResource("15_ext7g")]
+[node name="SpikeNormalLong6" parent="Traps" instance=ExtResource("15_ext7g")]
 position = Vector2(2240, -96)
 
-[node name="SpikeNormalLong11" parent="." instance=ExtResource("16_jxvpb")]
+[node name="SpikeNormalLong11" parent="Traps" instance=ExtResource("16_jxvpb")]
 position = Vector2(2304, -64)
 
-[node name="SpikeNormalLong12" parent="." instance=ExtResource("16_jxvpb")]
+[node name="SpikeNormalLong12" parent="Traps" instance=ExtResource("16_jxvpb")]
 position = Vector2(2368, -258)
 rotation = -1.5708
 
-[node name="SpikeNormalLong15" parent="." instance=ExtResource("15_ext7g")]
+[node name="SpikeNormalLong15" parent="Traps" instance=ExtResource("15_ext7g")]
 position = Vector2(2336, -393)
 rotation = -1.5708
 
-[node name="SpikeNormalLong16" parent="." instance=ExtResource("16_jxvpb")]
+[node name="SpikeNormalLong16" parent="Traps" instance=ExtResource("16_jxvpb")]
 position = Vector2(2333, -208)
 
-[node name="SpikeNormalLong18" parent="." instance=ExtResource("16_jxvpb")]
+[node name="SpikeNormalLong18" parent="Traps" instance=ExtResource("16_jxvpb")]
 position = Vector2(2208, -288)
 
-[node name="RespawnFlag2" parent="." instance=ExtResource("10_u6o02")]
+[node name="SpikeNormalLong13" parent="Traps" instance=ExtResource("16_jxvpb")]
+position = Vector2(2686, -480)
+rotation = -3.14159
+
+[node name="SpikeNormalLong14" parent="Traps" instance=ExtResource("16_jxvpb")]
+position = Vector2(2710, -480)
+rotation = -3.14159
+
+[node name="SpikeNormalLong17" parent="Traps" instance=ExtResource("16_jxvpb")]
+position = Vector2(2744, -480)
+rotation = -3.14159
+
+[node name="SpikeNormalLong19" parent="Traps" instance=ExtResource("16_jxvpb")]
+position = Vector2(2768, -480)
+rotation = -3.14159
+
+[node name="Stairs" type="Node2D" parent="."]
+
+[node name="Stairs" parent="Stairs" instance=ExtResource("15_08rxy")]
+position = Vector2(691, 218)
+
+[node name="Stairs2" parent="Stairs" instance=ExtResource("15_08rxy")]
+position = Vector2(740, 234)
+
+[node name="Stairs3" parent="Stairs" instance=ExtResource("15_08rxy")]
+position = Vector2(788, 250)
+
+[node name="Stairs4" parent="Stairs" instance=ExtResource("15_08rxy")]
+position = Vector2(1315, 266)
+
+[node name="Stairs5" parent="Stairs" instance=ExtResource("15_08rxy")]
+position = Vector2(1645, 266)
+
+[node name="Stairs6" parent="Stairs" instance=ExtResource("15_08rxy")]
+position = Vector2(1773, 250)
+
+[node name="Stairs7" parent="Stairs" instance=ExtResource("15_08rxy")]
+position = Vector2(1901, 234)
+
+[node name="Stairs8" parent="Stairs" instance=ExtResource("15_08rxy")]
+position = Vector2(1934, 218)
+
+[node name="Stairs9" parent="Stairs" instance=ExtResource("15_08rxy")]
+position = Vector2(2078, 202)
+
+[node name="Stairs10" parent="Stairs" instance=ExtResource("15_08rxy")]
+position = Vector2(2141, 186)
+
+[node name="Stairs11" parent="Stairs" instance=ExtResource("15_08rxy")]
+position = Vector2(2173, 170)
+
+[node name="Stairs12" parent="Stairs" instance=ExtResource("15_08rxy")]
+position = Vector2(2221, 154)
+
+[node name="Stairs13" parent="Stairs" instance=ExtResource("15_08rxy")]
+position = Vector2(2237, 138)
+
+[node name="Stairs14" parent="Stairs" instance=ExtResource("15_08rxy")]
+position = Vector2(2253, 122)
+
+[node name="RespawnPoints" type="Node2D" parent="."]
+
+[node name="RespawnFlag" parent="RespawnPoints" instance=ExtResource("10_u6o02")]
+position = Vector2(80, 160)
+
+[node name="RespawnFlag2" parent="RespawnPoints" instance=ExtResource("10_u6o02")]
 position = Vector2(2506, -496)
 
-[node name="SpikeNormalLong13" parent="." instance=ExtResource("16_jxvpb")]
-position = Vector2(2686, -480)
-rotation = 3.14159
-
-[node name="SpikeNormalLong14" parent="." instance=ExtResource("16_jxvpb")]
-position = Vector2(2710, -480)
-rotation = 3.14159
-
-[node name="SpikeNormalLong17" parent="." instance=ExtResource("16_jxvpb")]
-position = Vector2(2744, -480)
-rotation = 3.14159
-
-[node name="SpikeNormalLong19" parent="." instance=ExtResource("16_jxvpb")]
-position = Vector2(2768, -480)
-rotation = 3.14159
+[node name="OutOfBounds" parent="." instance=ExtResource("7_sveax")]
+position = Vector2(-507, 4277)
