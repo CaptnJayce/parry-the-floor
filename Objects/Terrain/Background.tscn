@@ -1,11 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6vcxqw76qu3l"]
+[gd_scene load_steps=3 format=3 uid="uid://b6vcxqw76qu3l"]
 
-[ext_resource type="Texture2D" uid="uid://bxu1ji7kwgp6u" path="res://Sprites/Spritesheets/PTFtileset.png" id="1_fbwtv"]
+[ext_resource type="Texture2D" uid="uid://bvxtsr148j8er" path="res://Sprites/Spritesheets/tiles.png" id="1_ivuow"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hc3ww"]
+atlas = ExtResource("1_ivuow")
+region = Rect2(49, 65, 46, 46)
 
 [node name="Background" type="Node2D"]
+scale = Vector2(100, 100)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(215906, 142431)
-texture = ExtResource("1_fbwtv")
+texture = SubResource("AtlasTexture_hc3ww")
 region_enabled = true
 region_rect = Rect2(0, 32, 1, 1)
