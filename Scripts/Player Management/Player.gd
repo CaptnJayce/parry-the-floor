@@ -6,14 +6,7 @@ class_name Player
 # PARRY RELATED VARIABLES
 var previous_direction # Used in _process to store the previous parry direction
 var parry_dist = 425 # The vertical distance traveled when parrying
-var parry_dist_reset = 425 # Used for resetting to original value
-var combo_count : int # Tracks successive parry hits
 var can_parry = true
-
-# COMBO RELATED VARIABLES
-var combo_1 = 50 
-var combo_2 = 80
-var combo_3 = 125
 
 # MOVEMENT RELATED VARIABLES
 var speed = 125 # Player speed 
@@ -56,11 +49,6 @@ func _ready():
 		player.global_position = Signals.respawnpos_data
 
 func _process(_delta):
-		# Resets combo to 0 if player lands on floor
-	if player.is_on_floor():
-		combo_count = 0
-		parry_dist = parry_dist_reset
-	
 	# Sets 'sprinting' to true or false and manages speed 
 	if Input.is_action_just_pressed("sprint"):
 		if sprinting == false:
@@ -218,24 +206,7 @@ func _on_attack_box_area_entered(area):
 			hit_sound_1.play()
 		else:
 			hit_sound_2.play()
-			
-		# Tracks combo number to add additional height to successive parries
-		# Resets when landing
-		combo_count += 1
-		if combo_count == 1:
-			parry_dist = parry_dist_reset
-			parry_dist = parry_dist + combo_1
-		if combo_count == 2: 
-			parry_dist = parry_dist_reset
-			parry_dist = parry_dist + combo_2
-		if combo_count == 3:
-			parry_dist = parry_dist_reset
-			parry_dist = parry_dist + combo_3
-		if combo_count > 3:
-			parry_dist = parry_dist_reset
-			combo_count = 1 # Loops back to 1 so player doesn't have to land to reset combo
 		
-		# I forgot what this does
 		if previous_direction == "down":
 			velocity.y = -parry_dist
 		else:
