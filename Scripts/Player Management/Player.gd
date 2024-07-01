@@ -5,8 +5,8 @@ class_name Player
 
 # PARRY RELATED VARIABLES
 var previous_direction # Used in _process to store the previous parry direction
-var parry_dist = 450 # The vertical distance traveled when parrying
-var parry_dist_reset = 450 # Used for resetting to original value
+var parry_dist = 425 # The vertical distance traveled when parrying
+var parry_dist_reset = 425 # Used for resetting to original value
 var combo_count : int # Tracks successive parry hits
 var can_parry = true
 
@@ -71,14 +71,17 @@ func _process(_delta):
 			speed = 125
 
 func _physics_process(delta):
-	direction = Input.get_axis("m_left", "m_right")
 	
+	direction = Input.get_axis("m_left", "m_right")
+
 	# JUMP
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		velocity.y = clamp(velocity.y, -1000, 1200)
+
 	if Input.is_action_pressed("m_jump") and is_on_floor():
 		velocity.y = jump
-	
+		
 	# Walking and Running SFX handling
 	# Could be optimised
 	# Stops SFX when not moving

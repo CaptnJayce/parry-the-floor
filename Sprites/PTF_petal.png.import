@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqae1b84nf7dl"
-path="res://.godot/imported/menubuttons.png-4a10e209f1e55bfbbc8ed05dcb960e8e.ctex"
+uid="uid://dan0g2j78t7kg"
+path="res://.godot/imported/PTF_petal.png-470b6bc337e4810b6a47ee3c9817df7a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Menu/menubuttons.png"
-dest_files=["res://.godot/imported/menubuttons.png-4a10e209f1e55bfbbc8ed05dcb960e8e.ctex"]
+source_file="res://Sprites/PTF_petal.png"
+dest_files=["res://.godot/imported/PTF_petal.png-470b6bc337e4810b6a47ee3c9817df7a.ctex"]
 
 [params]
 

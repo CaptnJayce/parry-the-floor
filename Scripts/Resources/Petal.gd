@@ -8,6 +8,7 @@ func _ready():
 		if LevelData.petal_dict["petals"][petal_id] == true:
 			queue_free()
 
+
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		LevelData.petal_dict["petals"][petal_id] = true
