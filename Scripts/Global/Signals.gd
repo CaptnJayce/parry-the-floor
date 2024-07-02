@@ -16,6 +16,8 @@ var next_point
 
 var previous_level
 
+var invincible = false
+
 var music_volume
 var respawnpos_data
 var death_counter : int

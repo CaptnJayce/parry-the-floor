@@ -25,6 +25,7 @@ var default_petal_dict = {
 		7 : false
 	}
 }
+
 func _ready():
 	Signals.connect("delete", _delete)
 
@@ -35,18 +36,23 @@ func load_game():
 	if FileAccess.file_exists(save_path):
 		var file = FileAccess.open(save_path, FileAccess.READ)
 		print("file exists")
+		Signals.music_volume = file.get_var()
+		print(Signals.music_volume)
 		LevelData.level_dict = file.get_var()
 		LevelData.petal_dict = file.get_var()
 		Signals.death_counter = file.get_var()
 	else:
 		print("file doesnt exist")
 		default_level_dict["last_checkpoint"] = Vector2(0, 48)
+		Signals.music_volume =-10
 		LevelData.level_dict = default_level_dict
 		LevelData.petal_dict = default_petal_dict
 		Signals.death_counter = 0
 
 func save_game():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_var(Signals.music_volume)
+	print(Signals.music_volume)
 	file.store_var(LevelData.level_dict)
 	file.store_var(LevelData.petal_dict)
 	file.store_var(Signals.death_counter)

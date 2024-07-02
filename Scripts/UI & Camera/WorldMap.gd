@@ -12,7 +12,6 @@ var completed_movement = true
 var lerp_threshold = 0.1
 
 func _ready():
-	SaveLoad.load_game()
 	Music.play_menu_music()
 	levels = level_holder.get_children()
 	update_levels()

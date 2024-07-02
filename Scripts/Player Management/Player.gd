@@ -42,6 +42,9 @@ var jump_timer : float # Time before playing jump animation
 @onready var parry_progress = $TextureProgressBar
 
 func _ready():
+	if Signals.invincible == true:
+		Signals.invincible = false
+
 	sprinting = false
 	animation = $AnimationPlayer
 	
@@ -249,11 +252,12 @@ func _on_hurt_box_area_entered(area):
 
 # DEATH
 func die():
-	death_sound.play()
-	velocity = Vector2.ZERO
-	Signals.death_counter = Signals.death_counter + 1
-	LevelData.damage_taken += 1
-	player.global_position = Signals.respawnpos_data
+	if Signals.invincible == false:
+		death_sound.play()
+		velocity = Vector2.ZERO
+		Signals.death_counter = Signals.death_counter + 1
+		LevelData.damage_taken += 1
+		player.global_position = Signals.respawnpos_data
 	
 func anim_reset():
 	animation_tree["parameters/conditions/idle"] = true
