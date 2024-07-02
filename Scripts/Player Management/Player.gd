@@ -6,8 +6,9 @@ class_name Player
 # PARRY RELATED VARIABLES
 var previous_direction # Used in _process to store the previous parry direction
 var parry_dist = 425 # The vertical distance traveled when parrying
+var parry_bonus = 160 # Bonus dist when fully charged
 var can_parry = true
-
+var parry_timer = 0
 # MOVEMENT RELATED VARIABLES
 var speed = 125 # Player speed 
 var jump = -350 # Player jump height
@@ -48,7 +49,14 @@ func _ready():
 	else:
 		player.global_position = Signals.respawnpos_data
 
-func _process(_delta):
+func _process(delta):
+	if Input.is_action_pressed("parry_d"):
+		parry_timer += delta
+
+	if Input.is_action_just_released("parry_d"):
+		await get_tree().create_timer(0.5).timeout
+		parry_timer = 0
+
 	# Sets 'sprinting' to true or false and manages speed 
 	if Input.is_action_just_pressed("sprint"):
 		if sprinting == false:
@@ -57,9 +65,11 @@ func _process(_delta):
 		else:
 			sprinting = false
 			speed = 125
+		
+	if is_on_floor():
+		jump_timer = 0
 
 func _physics_process(delta):
-	
 	direction = Input.get_axis("m_left", "m_right")
 
 	# JUMP
@@ -143,21 +153,21 @@ func update_animation(delta):
 			animation_tree["parameters/conditions/sprinting"] = true
 
 	# Sets parry anim
-	if Input.is_action_just_pressed("parry_d"):
+	if Input.is_action_just_released("parry_d"):
 		animation_tree["parameters/conditions/parry"] = true
 	else:
 		animation_tree["parameters/conditions/parry"] = false
-	
+
 	# Sets jumping anim
 	if !is_on_floor():
 		jump_timer += delta
 		if jump_timer > 0.4:
+			jump_timer = 0
 			animation_tree["parameters/conditions/jumping"] = true
 			#animation_tree["parameters/conditions/walling"] = false
 			animation_tree["parameters/conditions/is_moving"] = false
 			animation_tree["parameters/conditions/sprinting"] = false
 			animation_tree["parameters/conditions/idle"] = false
-			jump_timer = 0
 	else:
 		animation_tree["parameters/conditions/jumping"] = false
 
@@ -201,16 +211,25 @@ func update_animation(delta):
 func _on_attack_box_area_entered(area):
 	if area.is_in_group("Collide") && can_parry == true || is_on_wall() && !is_on_floor() && can_parry == true:
 		can_parry = false
+		
 		# Randomises which hit SFX is played
 		if randi_range(1,2) == 1:
 			hit_sound_1.play()
 		else:
 			hit_sound_2.play()
 		
+		if parry_timer >= 1.5:
+			parry_dist = parry_dist + parry_bonus
+			parry_timer = 0
+		
 		if previous_direction == "down":
 			velocity.y = -parry_dist
 		else:
 			velocity.x = 0
+		
+		if parry_timer == 0 && parry_dist > 425:
+			parry_dist = parry_dist - parry_bonus
+		
 		await get_tree().create_timer(0.3).timeout
 		can_parry = true
 

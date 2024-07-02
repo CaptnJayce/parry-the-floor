@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://s6i8dtxlp5yq"]
 
 [ext_resource type="Script" path="res://Scripts/UI & Camera/PauseController.gd" id="1_ntrch"]
-[ext_resource type="Texture2D" uid="uid://dp2qy6s40540q" path="res://Sprites/Menu/menubuttons.png" id="2_ndyxq"]
+[ext_resource type="Texture2D" uid="uid://dqae1b84nf7dl" path="res://Sprites/Menu/menubuttons.png" id="2_ndyxq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1p3s"]
 atlas = ExtResource("2_ndyxq")

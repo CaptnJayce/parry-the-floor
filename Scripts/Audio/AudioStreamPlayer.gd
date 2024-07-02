@@ -1,7 +1,7 @@
 extends AudioStreamPlayer
 
-const menu_music = preload("res://Audio/OST/1_QuestionMark.ogg")
-const one_four_music = preload("res://Audio/OST/2_WinterWarmthRemixIGuess.ogg")
+const menu_music = preload("res://Audio/OST/0_MainMenu.ogg")
+#const one_four_music = preload("res://Audio/OST/2_WinterWarmthRemixIGuess.ogg")
 
 var music_bus = AudioServer.get_bus_index("Master")
 
@@ -22,4 +22,5 @@ func play_menu_music():
 	_play_music(menu_music)
 
 func play_one_four():
-	_play_music(one_four_music)
+	pass
+	#_play_music(one_four_music)
