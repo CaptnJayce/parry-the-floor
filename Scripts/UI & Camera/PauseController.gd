@@ -30,4 +30,5 @@ func _on_load_pressed():
 func _on_quit_pressed():
 	Signals.emit_signal("quit") 
 	Signals.music_volume = $SliderBox/HSlider.value
+	get_tree().change_scene_to_file("res://UI/MainMenu/MainMenu.tscn")
 

@@ -221,7 +221,7 @@ func _on_attack_box_area_entered(area):
 		else:
 			hit_sound_2.play()
 		
-		if parry_timer >= 1.5:
+		if parry_timer >= 1:
 			parry_dist = parry_dist + parry_bonus
 			parry_timer = 0
 		

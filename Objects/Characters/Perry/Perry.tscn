@@ -34,7 +34,7 @@ size = Vector2(17.02, 6.99661)
 size = Vector2(4.05903, 11.9706)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2vcuj"]
-size = Vector2(4.01447, 18.051)
+size = Vector2(4.01447, 15.0272)
 
 [sub_resource type="Animation" id="Animation_sw435"]
 loop_mode = 1
@@ -941,8 +941,6 @@ offset_right = 19.5666
 offset_bottom = 10.0099
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 8
-max_value = 150.0
-step = 1.5
 fill_mode = 4
 texture_under = ExtResource("2_op5jc")
 texture_progress = ExtResource("2_op5jc")
@@ -956,6 +954,7 @@ texture_filter = 1
 texture = ExtResource("2_jdgmd")
 hframes = 6
 vframes = 6
+frame = 2
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -1016,13 +1015,13 @@ disabled = true
 debug_color = Color(0.99177, 0, 0.261152, 0.42)
 
 [node name="JumpBox" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0.0579472, -0.887321)
+position = Vector2(0.013752, 2.07369)
 shape = SubResource("RectangleShape2D_l1i5q")
 disabled = true
 debug_color = Color(0.989555, 0, 0.289057, 0.42)
 
 [node name="HitBox" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0.0315467, 6.08665)
+position = Vector2(0.0315467, 5.63685)
 shape = SubResource("RectangleShape2D_2vcuj")
 debug_color = Color(0.973611, 0, 0.398406, 0.42)
 
