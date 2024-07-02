@@ -122,3 +122,4 @@ texture_hover = SubResource("AtlasTexture_th6el")
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/Quit" to="." method="_on_quit_pressed"]
 [connection signal="value_changed" from="VBoxContainer2/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="HBoxContainer3/TextureButton" to="." method="_on_texture_button_pressed"]

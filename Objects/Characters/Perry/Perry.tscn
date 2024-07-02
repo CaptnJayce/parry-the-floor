@@ -1,7 +1,8 @@
-[gd_scene load_steps=86 format=3 uid="uid://tacb7ydmc5ot"]
+[gd_scene load_steps=87 format=3 uid="uid://tacb7ydmc5ot"]
 
 [ext_resource type="Script" path="res://Scripts/Player Management/Player.gd" id="1_gh08y"]
 [ext_resource type="Texture2D" uid="uid://wjoymcw0xcv5" path="res://Objects/Characters/Perry/PTF_anim_perry.png" id="2_jdgmd"]
+[ext_resource type="Texture2D" uid="uid://dyyqyax17vtqj" path="res://Sprites/Menu/PTF_circle.png" id="2_op5jc"]
 [ext_resource type="AudioStream" uid="uid://b18ko5l6d7tgi" path="res://Audio/SFX/sfx_run.ogg" id="3_3lfpu"]
 [ext_resource type="AudioStream" uid="uid://dgfiwjm8e2p5m" path="res://Audio/SFX/sfx_walk.ogg" id="3_560xq"]
 [ext_resource type="AudioStream" uid="uid://cas1ohaiuqy8l" path="res://Audio/SFX/sfx_died.mp3" id="4_tri8g"]
@@ -933,6 +934,21 @@ graph_offset = Vector2(144, -104)
 scale = Vector2(2, 2)
 script = ExtResource("1_gh08y")
 
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 3.56661
+offset_top = -16.9901
+offset_right = 19.5666
+offset_bottom = 10.0099
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 8
+max_value = 150.0
+step = 1.5
+fill_mode = 4
+texture_under = ExtResource("2_op5jc")
+texture_progress = ExtResource("2_op5jc")
+tint_under = Color(0.772597, 0.754181, 0.746257, 1)
+tint_progress = Color(1, 0, 1, 1)
+
 [node name="Marker2D" type="Marker2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Marker2D"]
@@ -940,7 +956,6 @@ texture_filter = 1
 texture = ExtResource("2_jdgmd")
 hframes = 6
 vframes = 6
-frame = 2
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,

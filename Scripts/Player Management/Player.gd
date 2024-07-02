@@ -39,6 +39,7 @@ var jump_timer : float # Time before playing jump animation
 
 # OTHER
 #@onready var elevation = $ElevationArea/ElevationShape
+@onready var parry_progress = $TextureProgressBar
 
 func _ready():
 	sprinting = false
@@ -50,6 +51,8 @@ func _ready():
 		player.global_position = Signals.respawnpos_data
 
 func _process(delta):
+	parry_progress.value = parry_timer * 100
+	
 	if Input.is_action_pressed("parry_d"):
 		parry_timer += delta
 
