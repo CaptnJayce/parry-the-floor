@@ -1,13 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bv8ldy6uuenlg"]
+[gd_scene load_steps=11 format=3 uid="uid://bv8ldy6uuenlg"]
 
 [ext_resource type="Script" path="res://Scripts/Obstacles/Firewall.gd" id="1_drtmh"]
 [ext_resource type="Texture2D" uid="uid://b2p25coyf4v7t" path="res://Objects/Obstacles/Physical/PTF_anim_firewall.png" id="2_ahur4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdibl"]
-size = Vector2(10, 5)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_orbo8"]
-size = Vector2(36, 33.5)
+size = Vector2(52.0625, 33.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebg8s"]
 size = Vector2(8, 25)
@@ -165,16 +162,10 @@ _data = {
 scale = Vector2(2, 2)
 script = ExtResource("1_drtmh")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 13.5)
-shape = SubResource("RectangleShape2D_cdibl")
-
 [node name="FireArea" type="Area2D" parent="." groups=["Player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireArea"]
-position = Vector2(0, -0.75)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_orbo8")
 
 [node name="Fire" type="Area2D" parent="." groups=["Kill"]]

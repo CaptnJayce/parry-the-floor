@@ -12,6 +12,9 @@ signal petal_picked
 signal gold_lotus
 
 signal stairs
+
+var previous_time
+
 var next_point
 
 var previous_level
@@ -22,5 +25,6 @@ var music_volume
 var respawnpos_data
 var death_counter : int
 
+	
 
 

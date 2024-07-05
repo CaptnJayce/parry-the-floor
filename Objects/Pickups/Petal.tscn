@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://eyilnx0c7fjm"]
+[gd_scene load_steps=5 format=3 uid="uid://eyilnx0c7fjm"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/Petal.gd" id="1_8asdu"]
 [ext_resource type="Texture2D" uid="uid://dan0g2j78t7kg" path="res://Sprites/PTF_petal.png" id="2_fyirw"]
+[ext_resource type="AudioStream" uid="uid://c05rquqw358te" path="res://Audio/SFX/sfx_petal.wav" id="3_x2gpl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6x80"]
 size = Vector2(13.9447, 12.991)
@@ -17,5 +18,8 @@ shape = SubResource("RectangleShape2D_l6x80")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_fyirw")
 region_rect = Rect2(2, 1, 11, 14)
+
+[node name="PickupSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_x2gpl")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -941,6 +941,23 @@ offset_right = 19.5666
 offset_bottom = 10.0099
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 8
+max_value = 75.0
+step = 0.75
+fill_mode = 4
+texture_under = ExtResource("2_op5jc")
+texture_progress = ExtResource("2_op5jc")
+tint_under = Color(0.772597, 0.754181, 0.746257, 1)
+tint_progress = Color(1, 0, 1, 1)
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="."]
+offset_left = -12.2597
+offset_top = -17.2563
+offset_right = 3.74035
+offset_bottom = 9.74365
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 8
+max_value = 150.0
+step = 1.5
 fill_mode = 4
 texture_under = ExtResource("2_op5jc")
 texture_progress = ExtResource("2_op5jc")
@@ -954,6 +971,7 @@ texture_filter = 1
 texture = ExtResource("2_jdgmd")
 hframes = 6
 vframes = 6
+frame = 1
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,

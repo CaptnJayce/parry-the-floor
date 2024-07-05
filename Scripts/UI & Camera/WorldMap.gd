@@ -6,6 +6,8 @@ extends Node
 var levels = []
 @onready var curr_level = $LevelHolder/Level1
 
+@onready var label = $Label
+
 var lerp_speed = 1
 var lerp_progress = 0.0
 var completed_movement = true
@@ -15,6 +17,11 @@ func _ready():
 	Music.play_menu_music()
 	levels = level_holder.get_children()
 	update_levels()
+	update_time()
+
+func update_time():
+	if Signals.previous_time != null:
+		label.text = str("Previous time: ", + Signals.previous_time)
 
 func update_levels():
 	for level in levels:
@@ -63,11 +70,14 @@ func _process(delta):
 			if player.position.distance_to(target_level.global_position) < lerp_threshold:
 				break
 
-		await get_tree().create_timer(0.1).timeout
-		player.position = target_level.global_position
-		show_stats(target_level)
-		curr_level = target_level
-		completed_movement = true
+		if get_tree():
+			await get_tree().create_timer(0.1).timeout
+			player.position = target_level.global_position
+			show_stats(target_level)
+			curr_level = target_level
+			completed_movement = true
+		else:
+			pass
 
 func show_stats(target_level):
 	if LevelData.level_dict[target_level.name]["unlocked"]:

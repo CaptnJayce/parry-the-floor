@@ -11,12 +11,13 @@ var can_parry = true
 var parry_timer = 0
 # MOVEMENT RELATED VARIABLES
 var speed = 125 # Player speed 
-var jump = -350 # Player jump height
+var jump = -360 # Player jump height
 var forwards = true
 
 var sprint_speed = 300 # Player speed when sprinting
 var slide_speed = 250 # Speed when sliding
 var slide_jump = -50 # Additional jump during slide
+var slide_timer = 1.5
 
 var can_slide = true # Used for slide cooldown
 var sprinting : bool # Used to regulate some animations and SFX
@@ -40,6 +41,7 @@ var jump_timer : float # Time before playing jump animation
 # OTHER
 #@onready var elevation = $ElevationArea/ElevationShape
 @onready var parry_progress = $TextureProgressBar
+@onready var slide_progress = $TextureProgressBar2
 
 func _ready():
 	if Signals.invincible == true:
@@ -55,12 +57,16 @@ func _ready():
 
 func _process(delta):
 	parry_progress.value = parry_timer * 100
+	slide_progress.value = slide_timer * 100
 	
 	if Input.is_action_pressed("parry_d"):
 		parry_timer += delta
+	
+	if slide_timer < 1.5:
+		slide_timer += delta
 
 	if Input.is_action_just_released("parry_d"):
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.3).timeout
 		parry_timer = 0
 
 	# Sets 'sprinting' to true or false and manages speed 
@@ -178,15 +184,14 @@ func update_animation(delta):
 		animation_tree["parameters/conditions/jumping"] = false
 
 	# Sets sliding anim and movement bonuses
-	if Input.is_action_just_pressed("m_slide") && is_on_floor() && can_slide == true:
-		can_slide = false
+	if Input.is_action_just_pressed("m_slide") && is_on_floor() && slide_timer > 1.49999:
+		slide_timer = 0
 		animation_tree["parameters/conditions/sliding"] = true
 		speed = speed + slide_speed
 		jump = jump + slide_jump
 		await get_tree().create_timer(0.5).timeout
 		speed = speed - slide_speed
 		jump = jump - slide_jump
-		cooldown()
 	else:
 		animation_tree["parameters/conditions/sliding"] = false
 
@@ -224,7 +229,7 @@ func _on_attack_box_area_entered(area):
 		else:
 			hit_sound_2.play()
 		
-		if parry_timer >= 1:
+		if parry_timer >= 0.75:
 			parry_dist = parry_dist + parry_bonus
 			parry_timer = 0
 		
@@ -238,12 +243,6 @@ func _on_attack_box_area_entered(area):
 		
 		await get_tree().create_timer(0.3).timeout
 		can_parry = true
-
-# SLIDE COOLDOWN
-func cooldown():
-	can_slide = false
-	await get_tree().create_timer(2.0).timeout
-	can_slide = true
 
 # DAMAGE
 func _on_hurt_box_area_entered(area):

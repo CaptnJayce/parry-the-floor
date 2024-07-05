@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dt1jqhwh0nlrp" path="res://Sprites/Animations/Spike.png" id="2_fehmt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqsuf"]
-size = Vector2(26, 29)
+size = Vector2(39, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr2ji"]
 size = Vector2(16, 8)
